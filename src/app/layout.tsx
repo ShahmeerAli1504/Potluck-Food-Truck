@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   title: 'Potluck Food Truck | Asian Fusion with a Mexican Twist in Reno, NV',
   description:
     'Potluck is Reno’s premier food truck serving Cheeseburger Wonton Tacos, Elote Chicken Fries, and pan-fried Potstickers. Find today’s location or book event catering in Reno & Sparks.',
+  icons: {
+    icon: '/logo.jpg',
+    shortcut: '/logo.jpg',
+    apple: '/logo.jpg',
+  },
   keywords: [
     'Potluck Reno',
     'Potluck Food Truck Reno',
