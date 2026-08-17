@@ -8,6 +8,7 @@ import BrandStory from '@/components/brand-story';
 import MenuPreview from '@/components/menu-preview';
 import FindTruck from '@/components/find-truck';
 import CateringCTA from '@/components/catering-cta';
+import GallerySection from '@/components/gallery-section';
 import ReviewsSection from '@/components/reviews-section';
 import SocialFeed from '@/components/social-feed';
 import Footer from '@/components/footer';
@@ -23,6 +24,7 @@ export default function HomePage() {
       <BrandStory />
       <MenuPreview />
       <FindTruck />
+      <GallerySection />
       <CateringCTA />
       <ReviewsSection />
       <SocialFeed />

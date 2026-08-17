@@ -9,11 +9,12 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
-    { label: 'Menu', href: '#menu' },
-    { label: 'Find Us', href: '#find-us' },
-    { label: 'Catering & Events', href: '#catering' },
-    { label: 'Our Story', href: '#story' },
-    { label: 'Reviews', href: '#reviews' },
+    { label: 'Menu', href: '/#menu' },
+    { label: 'Find Us', href: '/#find-us' },
+    { label: 'Catering & Events', href: '/#catering' },
+    { label: 'Gallery', href: '/gallery' },
+    { label: 'Our Story', href: '/#story' },
+    { label: 'Reviews', href: '/#reviews' },
   ];
 
   return (
@@ -45,15 +46,19 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.label}
               href={link.href}
-              className="text-sm font-semibold text-brand-cream/80 hover:text-brand-red transition-colors tracking-wide"
+              className={`text-sm font-semibold transition-colors tracking-wide ${
+                link.label === 'Gallery'
+                  ? 'text-brand-gold hover:text-white flex items-center gap-1 bg-brand-charcoal/80 px-3 py-1.5 rounded-lg border border-brand-border/80 hover:border-brand-gold'
+                  : 'text-brand-cream/80 hover:text-brand-red'
+              }`}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -91,14 +96,18 @@ export default function Navbar() {
         <div className="md:hidden bg-brand-dark/98 backdrop-blur-xl border-b border-brand-border px-4 pt-4 pb-6 space-y-4 animate-in slide-in-from-top duration-200 shadow-2xl">
           <div className="grid grid-cols-1 gap-2">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block text-base font-bold text-brand-cream hover:text-brand-red py-3 px-4 rounded-xl hover:bg-brand-charcoal active:bg-brand-border active:scale-[0.98] transition-all"
+                className={`block text-base font-bold py-3 px-4 rounded-xl active:scale-[0.98] transition-all ${
+                  link.label === 'Gallery'
+                    ? 'text-brand-gold bg-brand-charcoal border border-brand-border/60'
+                    : 'text-brand-cream hover:text-brand-red hover:bg-brand-charcoal'
+                }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
           <div className="pt-3 border-t border-brand-border flex flex-col gap-2.5">

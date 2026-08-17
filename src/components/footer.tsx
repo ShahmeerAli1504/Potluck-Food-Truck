@@ -85,14 +85,19 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#story" className="hover:text-brand-red transition-colors">
-                  Our Culinary Story
-                </a>
+                <Link href="/gallery" className="text-brand-gold hover:text-white font-bold transition-colors">
+                  Fun Photo Gallery 📸
+                </Link>
               </li>
               <li>
-                <a href="#reviews" className="hover:text-brand-red transition-colors">
+                <Link href="/#story" className="hover:text-brand-red transition-colors">
+                  Our Culinary Story
+                </Link>
+              </li>
+              <li>
+                <Link href="/#reviews" className="hover:text-brand-red transition-colors">
                   Customer Reviews
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
