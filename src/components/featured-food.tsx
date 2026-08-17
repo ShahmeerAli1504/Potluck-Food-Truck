@@ -6,7 +6,7 @@ import FoodImage from '@/components/food-image';
 import { Flame, Star, Sparkles, ArrowRight, X, Check } from 'lucide-react';
 
 export default function FeaturedFood() {
-  const featuredItems = MENU_ITEMS.filter((item) => item.isHeroFeatured);
+  const featuredItems = MENU_ITEMS.filter((item) => item.isHeroFeatured).slice(0, 4);
   const [selectedDish, setSelectedDish] = useState<MenuItem | null>(null);
 
   return (
