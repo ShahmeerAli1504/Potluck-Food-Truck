@@ -32,11 +32,11 @@ export default function Hero() {
             {/* Main Editorial Headline */}
             <h1 className="font-display font-black text-4xl sm:text-6xl xl:text-7xl text-white tracking-tight leading-[1.05] uppercase">
               Asian Fusion. <br />
-              <span className="text-brand-red underline decoration-brand-gold decoration-wavy decoration-2 underline-offset-8">
+              <span className="text-brand-red underline decoration-brand-gold decoration-wavy decoration-2 underline-offset-8 drop-shadow-[0_0_15px_rgba(229,57,53,0.5)]">
                 Mexican Twist.
               </span> <br />
-              <span className="font-script text-brand-gold text-3xl sm:text-5xl lowercase capitalize tracking-normal block mt-1">
-                Zero Boring Bites.
+              <span className="font-script text-brand-gold text-3xl sm:text-5xl lowercase capitalize tracking-normal block mt-2 drop-shadow-[0_0_12px_rgba(245,166,35,0.4)]">
+                Zero Boring Bites 🔥
               </span>
             </h1>
 
