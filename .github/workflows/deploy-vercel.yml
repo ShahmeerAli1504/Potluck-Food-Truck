@@ -1,0 +1,42 @@
+name: Force Vercel Deployment CI/CD
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  check-and-deploy:
+    name: Check Vercel Build & Force Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Trigger Vercel Deploy Hook (If Configured)
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -n "$VERCEL_DEPLOY_HOOK" ]; then
+            echo "🚀 VERCEL_DEPLOY_HOOK detected! Triggering instant forced production build on Vercel..."
+            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$VERCEL_DEPLOY_HOOK")
+            echo "HTTP Status: $HTTP_STATUS"
+            if [ "$HTTP_STATUS" -eq 200 ] || [ "$HTTP_STATUS" -eq 201 ]; then
+              echo "✅ Successfully triggered forced Vercel deployment!"
+            else
+              echo "⚠️ Deploy Hook returned status $HTTP_STATUS. Please verify your Vercel Deploy Hook URL."
+            fi
+          else
+            echo "ℹ️ VERCEL_DEPLOY_HOOK secret not found. Checking for Vercel CLI Token..."
+          fi
+
+      - name: Deploy to Vercel via CLI Action
+        uses: amondnet/vercel-action@v25
+        if: ${{ secrets.VERCEL_TOKEN != '' }}
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
