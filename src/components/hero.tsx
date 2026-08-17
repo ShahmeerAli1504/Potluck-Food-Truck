@@ -6,7 +6,7 @@ import { MapPin, Utensils, Calendar, Flame, Star, Sparkles, ArrowDown } from 'lu
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] bg-brand-black bg-chalk-grid pt-10 pb-16 lg:py-24 overflow-hidden border-b border-brand-border/80 flex items-center">
+    <section className="relative min-h-[90vh] bg-brand-black bg-chalk-grid pt-10 pb-20 lg:py-24 overflow-hidden border-b border-brand-border/80 flex items-center">
       {/* Subtle background glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-brand-red/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-[400px] h-[300px] bg-brand-gold/10 blur-[100px] rounded-full pointer-events-none" />
@@ -25,7 +25,7 @@ export default function Hero() {
               </span>
               <span className="h-3 w-px bg-brand-border" />
               <span className="font-script text-brand-gold text-sm font-semibold">
-                The Good Luck Truck 🌶️
+                The Good Luck Truck
               </span>
             </div>
 
@@ -36,7 +36,7 @@ export default function Hero() {
                 Mexican Twist.
               </span> <br />
               <span className="font-script text-brand-gold text-3xl sm:text-5xl lowercase capitalize tracking-normal block mt-2 drop-shadow-[0_0_12px_rgba(245,166,35,0.4)]">
-                Zero Boring Bites 🔥
+                Zero Boring Bites
               </span>
             </h1>
 
@@ -103,10 +103,10 @@ export default function Hero() {
 
           </div>
 
-          {/* Right Column: Hero Visual Showcase */}
-          <div className="lg:col-span-5 relative flex justify-center">
+          {/* Right Column: Hero Visual Showcase (Fixed Layout to prevent text overlap) */}
+          <div className="lg:col-span-5 relative flex justify-center pb-10 sm:pb-0">
             
-            {/* Main Food Composite Frame with Steam Animation */}
+            {/* Main Food Composite Frame */}
             <div className="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden border-2 border-brand-border/80 bg-brand-card shadow-2xl group">
               <FoodImage
                 src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1000&q=80"
@@ -114,17 +114,10 @@ export default function Hero() {
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 pointer-events-none" />
-
-              {/* Animated Steam Wisps Overlay */}
-              <div className="absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-3 pointer-events-none z-10">
-                <span className="w-2 h-6 bg-white/20 blur-xs rounded-full animate-steam-1" />
-                <span className="w-2.5 h-8 bg-brand-gold/30 blur-xs rounded-full animate-steam-2" />
-                <span className="w-2 h-5 bg-white/20 blur-xs rounded-full animate-steam-1" />
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/30 to-transparent opacity-90 pointer-events-none" />
 
               {/* Logo Overlay Badge */}
-              <div className="absolute top-4 left-4 bg-brand-black/90 backdrop-blur-md p-2 rounded-2xl border border-brand-border flex items-center gap-3 shadow-lg">
+              <div className="absolute top-4 left-4 bg-brand-black/90 backdrop-blur-md p-2 rounded-2xl border border-brand-border flex items-center gap-3 shadow-lg z-10">
                 <div className="relative w-10 h-10 rounded-full overflow-hidden border border-brand-gold/60">
                   <Image src="/logo.jpg" alt="Potluck Logo" fill className="object-cover" />
                 </div>
@@ -134,30 +127,30 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Dish Feature Badge Overlay */}
-              <div className="absolute bottom-5 left-5 right-5 bg-brand-black/90 backdrop-blur-md p-4 rounded-2xl border border-brand-border shadow-xl">
-                <div className="flex items-start justify-between">
+              {/* Dish Feature Badge Overlay - High Visibility Text without Overlap */}
+              <div className="absolute bottom-5 left-4 right-4 bg-brand-black/95 backdrop-blur-md p-4 rounded-2xl border border-brand-border shadow-2xl z-10">
+                <div className="flex items-start justify-between gap-2">
                   <div>
                     <span className="bg-brand-red text-white font-extrabold text-[10px] uppercase px-2 py-0.5 rounded tracking-wider">
                       Signature Hit
                     </span>
-                    <h3 className="font-display font-extrabold text-lg text-white mt-1">
+                    <h3 className="font-display font-extrabold text-lg text-white mt-1 leading-tight">
                       Cheeseburger Wonton Tacos
                     </h3>
-                    <p className="text-xs text-brand-cream/80 line-clamp-1">
+                    <p className="text-xs text-brand-cream/80 line-clamp-1 mt-1">
                       Crispy wonton shells, seasoned beef, melted cheese & house aioli
                     </p>
                   </div>
-                  <span className="font-display font-black text-xl text-brand-gold bg-brand-charcoal px-3 py-1 rounded-xl border border-brand-border">
+                  <span className="font-display font-black text-lg text-brand-gold bg-brand-charcoal px-3 py-1 rounded-xl border border-brand-border flex-shrink-0">
                     $13.50
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Floating Secondary Dish Badge */}
-            <div className="absolute -bottom-6 -left-4 sm:left-2 bg-brand-charcoal border border-brand-border p-3.5 rounded-2xl shadow-2xl hidden sm:flex items-center gap-3 max-w-[240px] z-20">
-              <div className="relative w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
+            {/* Floating Secondary Dish Badge - Placed at top right offset to prevent overlap */}
+            <div className="absolute -bottom-6 -right-2 bg-brand-charcoal/95 backdrop-blur-md border border-brand-border p-3 rounded-2xl shadow-2xl hidden sm:flex items-center gap-3 max-w-[220px] z-20">
+              <div className="relative w-12 h-12 rounded-xl overflow-hidden flex-shrink-0">
                 <FoodImage
                   src="https://images.unsplash.com/photo-1585238342024-78d387f4a707?auto=format&fit=crop&w=300&q=80"
                   alt="Elote Chicken Fries"
@@ -166,7 +159,7 @@ export default function Hero() {
               </div>
               <div>
                 <p className="font-bold text-xs text-white">Elote Chicken Fries</p>
-                <p className="text-[11px] text-brand-cream/70">Loaded with sweet corn & cotija</p>
+                <p className="text-[11px] text-brand-cream/70">Sweet corn & cotija</p>
                 <p className="text-xs font-black text-brand-gold mt-0.5">$14.00</p>
               </div>
             </div>
@@ -176,7 +169,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Subtle Scroll Down Prompt */}
+      {/* Scroll Prompt */}
       <a
         href="#featured"
         className="absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center text-brand-cream/50 hover:text-brand-cream transition-colors text-xs font-semibold gap-1 hidden lg:flex"
