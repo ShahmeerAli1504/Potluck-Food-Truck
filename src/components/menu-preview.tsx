@@ -1,13 +1,21 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { MENU_ITEMS, MENU_CATEGORIES } from '@/data/menu-data';
 import FoodImage from '@/components/food-image';
-import { Search } from 'lucide-react';
+import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const ITEMS_PER_PAGE = 6;
 
 export default function MenuPreview() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  // Reset to page 1 on filter or search change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory, searchQuery]);
 
   const filteredItems = useMemo(() => {
     return MENU_ITEMS.filter((item) => {
@@ -20,6 +28,13 @@ export default function MenuPreview() {
       return matchesCategory && matchesSearch;
     });
   }, [activeCategory, searchQuery]);
+
+  const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE) || 1;
+
+  const paginatedItems = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredItems.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredItems, currentPage]);
 
   return (
     <section id="menu" className="py-20 bg-brand-dark border-b border-brand-border relative">
@@ -37,7 +52,7 @@ export default function MenuPreview() {
         </div>
 
         {/* Search & Category Navigation Controls */}
-        <div className="space-y-6 mb-12">
+        <div className="space-y-6 mb-10">
           
           {/* Search Input */}
           <div className="max-w-md mx-auto relative">
@@ -81,7 +96,7 @@ export default function MenuPreview() {
 
         </div>
 
-        {/* Menu Items List */}
+        {/* Menu Items Grid */}
         {filteredItems.length === 0 ? (
           <div className="text-center py-16 bg-brand-black rounded-3xl border border-brand-border p-8">
             <p className="text-lg font-bold text-white">No menu items found for "{searchQuery}"</p>
@@ -97,63 +112,116 @@ export default function MenuPreview() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredItems.map((item) => (
-              <div
-                key={item.id}
-                className="bg-brand-black border border-brand-border rounded-2xl p-5 hover:border-brand-red/50 transition-colors flex flex-col sm:flex-row gap-5 group"
-              >
-                {/* Thumbnail Image */}
-                <div className="relative w-full sm:w-36 aspect-square sm:aspect-auto sm:h-36 rounded-xl overflow-hidden bg-brand-card flex-shrink-0">
-                  <FoodImage
-                    src={item.image}
-                    alt={item.name}
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {item.badge && (
-                    <span className="absolute top-2 left-2 bg-brand-red text-white text-[9px] font-black uppercase px-2 py-0.5 rounded tracking-wider shadow z-10">
-                      {item.badge}
-                    </span>
-                  )}
-                </div>
-
-                {/* Info & Content */}
-                <div className="flex-1 flex flex-col justify-between space-y-2">
-                  <div>
-                    <div className="flex items-start justify-between gap-2">
-                      <h3 className="font-display font-extrabold text-lg text-white group-hover:text-brand-red transition-colors">
-                        {item.name}
-                      </h3>
-                      <span className="font-display font-black text-lg text-brand-gold bg-brand-charcoal px-2.5 py-0.5 rounded-lg border border-brand-border flex-shrink-0">
-                        ${item.price.toFixed(2)}
-                      </span>
-                    </div>
-
-                    <p className="text-xs text-brand-cream/70 leading-relaxed mt-1.5">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  {/* Dietary Badges & Ingredients */}
-                  <div className="pt-2 flex flex-wrap items-center gap-1.5">
-                    {item.dietary?.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-brand-charcoal text-brand-gold border border-brand-border"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                    {item.ingredients && (
-                      <span className="text-[10px] text-brand-cream/50 flex items-center gap-1">
-                        &bull; {item.ingredients.slice(0, 3).join(', ')}
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {paginatedItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-brand-black border border-brand-border rounded-2xl p-5 hover:border-brand-red/50 transition-all flex flex-col sm:flex-row gap-5 group"
+                >
+                  {/* Thumbnail Image */}
+                  <div className="relative w-full sm:w-36 aspect-square sm:aspect-auto sm:h-36 rounded-xl overflow-hidden bg-brand-card flex-shrink-0">
+                    <FoodImage
+                      src={item.image}
+                      alt={item.name}
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {item.badge && (
+                      <span className="absolute top-2 left-2 bg-brand-red text-white text-[9px] font-black uppercase px-2 py-0.5 rounded tracking-wider shadow z-10">
+                        {item.badge}
                       </span>
                     )}
                   </div>
-                </div>
 
+                  {/* Info & Content */}
+                  <div className="flex-1 flex flex-col justify-between space-y-2">
+                    <div>
+                      <div className="flex items-start justify-between gap-2">
+                        <h3 className="font-display font-extrabold text-lg text-white group-hover:text-brand-red transition-colors">
+                          {item.name}
+                        </h3>
+                        <span className="font-display font-black text-lg text-brand-gold bg-brand-charcoal px-2.5 py-0.5 rounded-lg border border-brand-border flex-shrink-0">
+                          ${item.price.toFixed(2)}
+                        </span>
+                      </div>
+
+                      <p className="text-xs text-brand-cream/70 leading-relaxed mt-1.5">
+                        {item.description}
+                      </p>
+                    </div>
+
+                    {/* Dietary Badges & Ingredients */}
+                    <div className="pt-2 flex flex-wrap items-center gap-1.5">
+                      {item.dietary?.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-brand-charcoal text-brand-gold border border-brand-border"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                      {item.ingredients && (
+                        <span className="text-[10px] text-brand-cream/50 flex items-center gap-1">
+                          &bull; {item.ingredients.slice(0, 3).join(', ')}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                </div>
+              ))}
+            </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-brand-border/60">
+                <p className="text-xs font-semibold text-brand-cream/60">
+                  Showing <span className="text-white font-bold">{(currentPage - 1) * ITEMS_PER_PAGE + 1}</span>–
+                  <span className="text-white font-bold">{Math.min(currentPage * ITEMS_PER_PAGE, filteredItems.length)}</span> of{' '}
+                  <span className="text-white font-bold">{filteredItems.length}</span> items
+                </p>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                    disabled={currentPage === 1}
+                    className="p-2.5 rounded-xl bg-brand-black border border-brand-border text-brand-cream hover:text-white disabled:opacity-40 disabled:cursor-not-allowed hover:bg-brand-charcoal transition-colors flex items-center gap-1 text-xs font-bold"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                    <span>Previous</span>
+                  </button>
+
+                  <div className="flex items-center gap-1">
+                    {[...Array(totalPages)].map((_, i) => {
+                      const pageNum = i + 1;
+                      const isActive = pageNum === currentPage;
+                      return (
+                        <button
+                          key={pageNum}
+                          onClick={() => setCurrentPage(pageNum)}
+                          className={`w-9 h-9 rounded-xl font-bold text-xs transition-colors ${
+                            isActive
+                              ? 'bg-brand-red text-white font-black shadow-md'
+                              : 'bg-brand-black text-brand-cream/70 border border-brand-border hover:text-white hover:bg-brand-charcoal'
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <button
+                    onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                    className="p-2.5 rounded-xl bg-brand-black border border-brand-border text-brand-cream hover:text-white disabled:opacity-40 disabled:cursor-not-allowed hover:bg-brand-charcoal transition-colors flex items-center gap-1 text-xs font-bold"
+                  >
+                    <span>Next</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
-            ))}
+            )}
           </div>
         )}
 
