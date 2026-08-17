@@ -9,6 +9,7 @@ export interface ScheduleLocation {
   note?: string;
   isToday?: boolean;
   googleMapsUrl: string;
+  mapEmbedUrl: string;
   statusText: 'SERVING NOW' | 'NEXT UP' | 'SCHEDULED' | 'PRIVATE CATERING';
 }
 
@@ -24,7 +25,8 @@ export const CURRENT_WEEK_SCHEDULE: ScheduleLocation[] = [
     note: 'Reno\'s biggest weekly food truck gathering! Find us by the main lawn.',
     isToday: true,
     statusText: 'SERVING NOW',
-    googleMapsUrl: 'https://maps.google.com/?q=Idlewild+Park+Reno+NV',
+    googleMapsUrl: 'https://maps.google.com/?q=Idlewild+Park+2055+Idlewild+Dr+Reno+NV+89509',
+    mapEmbedUrl: 'https://maps.google.com/maps?q=2055+Idlewild+Dr,+Reno,+NV+89509&t=&z=15&ie=UTF8&iwloc=&output=embed',
   },
   {
     id: 'stop-2',
@@ -37,7 +39,8 @@ export const CURRENT_WEEK_SCHEDULE: ScheduleLocation[] = [
     note: 'Parked right outside The Stick in downtown Reno! Perfect fuel before or after the game.',
     isToday: false,
     statusText: 'NEXT UP',
-    googleMapsUrl: 'https://maps.google.com/?q=95+N+Sierra+St+Reno+NV',
+    googleMapsUrl: 'https://maps.google.com/?q=95+N+Sierra+St+Reno+NV+89501',
+    mapEmbedUrl: 'https://maps.google.com/maps?q=95+N+Sierra+St,+Reno,+NV+89501&t=&z=15&ie=UTF8&iwloc=&output=embed',
   },
   {
     id: 'stop-3',
@@ -47,10 +50,11 @@ export const CURRENT_WEEK_SCHEDULE: ScheduleLocation[] = [
     venueName: 'Midtown District Pop-Up',
     address: '777 S Virginia St',
     cityState: 'Reno, NV 89501',
-    note: 'Sunday lunch vibe near Junkee & local boutiques.',
+    note: 'Sunday lunch vibe near Junkee & local Midtown boutiques.',
     isToday: false,
     statusText: 'SCHEDULED',
-    googleMapsUrl: 'https://maps.google.com/?q=777+S+Virginia+St+Reno+NV',
+    googleMapsUrl: 'https://maps.google.com/?q=777+S+Virginia+St+Reno+NV+89501',
+    mapEmbedUrl: 'https://maps.google.com/maps?q=777+S+Virginia+St,+Reno,+NV+89501&t=&z=15&ie=UTF8&iwloc=&output=embed',
   },
   {
     id: 'stop-4',
@@ -60,10 +64,11 @@ export const CURRENT_WEEK_SCHEDULE: ScheduleLocation[] = [
     venueName: 'South Reno Tech Park Lunch',
     address: '10390 Double R Blvd',
     cityState: 'Reno, NV 89521',
-    note: 'Mid-week lunch break destination for the tech district.',
+    note: 'Mid-week lunch break destination for the South Reno tech district.',
     isToday: false,
     statusText: 'SCHEDULED',
-    googleMapsUrl: 'https://maps.google.com/?q=10390+Double+R+Blvd+Reno+NV',
+    googleMapsUrl: 'https://maps.google.com/?q=10390+Double+R+Blvd+Reno+NV+89521',
+    mapEmbedUrl: 'https://maps.google.com/maps?q=10390+Double+R+Blvd,+Reno,+NV+89521&t=&z=15&ie=UTF8&iwloc=&output=embed',
   },
   {
     id: 'stop-5',
@@ -76,6 +81,7 @@ export const CURRENT_WEEK_SCHEDULE: ScheduleLocation[] = [
     note: 'Evening art walkthrough and late-night wonton taco cravings.',
     isToday: false,
     statusText: 'SCHEDULED',
-    googleMapsUrl: 'https://maps.google.com/?q=160+W+Liberty+St+Reno+NV',
+    googleMapsUrl: 'https://maps.google.com/?q=160+W+Liberty+St+Reno+NV+89501',
+    mapEmbedUrl: 'https://maps.google.com/maps?q=160+W+Liberty+St,+Reno,+NV+89501&t=&z=15&ie=UTF8&iwloc=&output=embed',
   },
 ];
