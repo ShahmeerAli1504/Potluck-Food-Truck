@@ -15,7 +15,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Headlines & High Conversion CTAs */}
-          <div className="lg:col-span-7 space-y-6 text-left">
+          <div className="lg:col-span-7 space-y-6 text-left animate-fade-up">
             
             {/* Tagline Badge with Flame Heat Animation */}
             <div className="inline-flex items-center gap-2 bg-brand-charcoal/90 border border-brand-border px-3.5 py-1.5 rounded-full shadow-inner animate-float-food">
@@ -104,7 +104,7 @@ export default function Hero() {
           </div>
 
           {/* Right Column: Hero Visual Showcase (Fixed Layout to prevent text overlap) */}
-          <div className="lg:col-span-5 relative flex justify-center pb-10 sm:pb-0">
+          <div className="lg:col-span-5 relative flex justify-center pb-10 sm:pb-0 animate-scale-up">
             
             {/* Main Food Composite Frame */}
             <div className="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden border-2 border-brand-border/80 bg-brand-card shadow-2xl group">
