@@ -88,24 +88,24 @@ export default function Navbar() {
 
       {/* Mobile Drawer Navigation */}
       {mobileOpen && (
-        <div className="md:hidden bg-brand-dark border-b border-brand-border px-4 pt-4 pb-6 space-y-4 animate-in slide-in-from-top duration-200">
+        <div className="md:hidden bg-brand-dark/98 backdrop-blur-xl border-b border-brand-border px-4 pt-4 pb-6 space-y-4 animate-in slide-in-from-top duration-200 shadow-2xl">
           <div className="grid grid-cols-1 gap-2">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block text-base font-bold text-brand-cream hover:text-brand-red py-2.5 px-3 rounded-lg hover:bg-brand-charcoal transition-colors"
+                className="block text-base font-bold text-brand-cream hover:text-brand-red py-3 px-4 rounded-xl hover:bg-brand-charcoal active:bg-brand-border active:scale-[0.98] transition-all"
               >
                 {link.label}
               </a>
             ))}
           </div>
-          <div className="pt-2 border-t border-brand-border flex flex-col gap-2">
+          <div className="pt-3 border-t border-brand-border flex flex-col gap-2.5">
             <a
               href="#find-us"
               onClick={() => setMobileOpen(false)}
-              className="w-full flex items-center justify-center gap-2 bg-brand-charcoal text-brand-cream font-bold text-sm py-3 rounded-lg border border-brand-border"
+              className="w-full flex items-center justify-center gap-2 bg-brand-charcoal text-brand-cream font-bold text-sm py-3.5 rounded-xl border border-brand-border active:scale-[0.98] transition-all"
             >
               <MapPin className="w-4 h-4 text-brand-gold" />
               Find Truck Schedule
@@ -113,7 +113,7 @@ export default function Navbar() {
             <a
               href="#catering"
               onClick={() => setMobileOpen(false)}
-              className="w-full flex items-center justify-center gap-2 bg-brand-red text-white font-bold text-sm py-3 rounded-lg shadow-md"
+              className="w-full flex items-center justify-center gap-2 bg-brand-red text-white font-bold text-sm py-3.5 rounded-xl shadow-lg active:scale-[0.98] transition-all"
             >
               <Calendar className="w-4 h-4" />
               Book Potluck Catering
