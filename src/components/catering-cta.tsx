@@ -111,8 +111,15 @@ export default function CateringCTA() {
                 <a href="tel:7755550199" className="hover:text-brand-red flex items-center gap-2 font-semibold">
                   <Phone className="w-4 h-4 text-brand-red" /> (775) 555-FOOD (3663)
                 </a>
-                <a href="mailto:catering@potlucktruckreno.com" className="hover:text-brand-red flex items-center gap-2 font-semibold">
-                  <Mail className="w-4 h-4 text-brand-gold" /> catering@potlucktruckreno.com
+                <a
+                  href="mailto:catering@potlucktruckreno.com?subject=Potluck%20Food%20Truck%20Catering%20Inquiry"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = "mailto:catering@potlucktruckreno.com?subject=Potluck%20Food%20Truck%20Catering%20Inquiry";
+                  }}
+                  className="hover:text-brand-red flex items-center gap-2 font-semibold text-brand-cream transition-colors"
+                >
+                  <Mail className="w-4 h-4 text-brand-gold flex-shrink-0" /> catering@potlucktruckreno.com
                 </a>
               </div>
             </div>

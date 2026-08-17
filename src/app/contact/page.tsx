@@ -54,7 +54,14 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase text-brand-gold">General & Event Email</p>
-                  <a href="mailto:catering@potlucktruckreno.com" className="font-bold text-white hover:text-brand-red text-base">
+                  <a
+                    href="mailto:catering@potlucktruckreno.com?subject=Potluck%20Food%20Truck%20General%20Inquiry"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = "mailto:catering@potlucktruckreno.com?subject=Potluck%20Food%20Truck%20General%20Inquiry";
+                    }}
+                    className="font-bold text-white hover:text-brand-red text-base transition-colors"
+                  >
                     catering@potlucktruckreno.com
                   </a>
                 </div>
