@@ -1,31 +1,31 @@
 'use client';
 
-import Image from 'next/image';
-import { Instagram, ArrowUpRight, Sparkles, Heart } from 'lucide-react';
+import FoodImage from '@/components/food-image';
+import { Instagram, ArrowUpRight, Heart } from 'lucide-react';
 
 export default function SocialFeed() {
   const posts = [
     {
       id: 'p1',
-      image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&auto=format&fit=crop&q=80',
       caption: 'Cheeseburger Wonton Tacos fresh out the fryer at Idlewild Food Truck Friday! 🌮🔥 #RenoEats #AsianFusion',
       likes: '482',
     },
     {
       id: 'p2',
-      image: 'https://images.unsplash.com/photo-1585238342024-78d387f4a707?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=600&auto=format&fit=crop&q=80',
       caption: 'Elote Chicken Fries piled high with cotija cheese & cilantro lime crema. Come get some at Downtown Reno! 🍟🌽',
       likes: '395',
     },
     {
       id: 'p3',
-      image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=600&auto=format&fit=crop&q=80',
       caption: 'Traditional Pork Potstickers pan-seared golden crisp. Dip into our house sweet chili glaze! 🥟🌶️',
       likes: '512',
     },
     {
       id: 'p4',
-      image: 'https://images.unsplash.com/photo-1624371414361-e670ef48e227?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1624371414361-e670ef48e227?w=600&auto=format&fit=crop&q=80',
       caption: 'Fresh cinnamon sugar churros with chocolate & dulce de leche dips. Perfect sweet ending to your meal! 🍩✨',
       likes: '621',
     },
@@ -72,13 +72,12 @@ export default function SocialFeed() {
               rel="noopener noreferrer"
               className="group relative aspect-square rounded-2xl overflow-hidden bg-brand-black border border-brand-border"
             >
-              <Image
+              <FoodImage
                 src={post.image}
                 alt="Potluck Reno Instagram Post"
-                fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-brand-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-brand-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end pointer-events-none">
                 <p className="text-xs text-white line-clamp-2 leading-tight font-medium">
                   {post.caption}
                 </p>

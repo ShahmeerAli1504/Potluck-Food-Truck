@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import Image from 'next/image';
-import { MENU_ITEMS, MENU_CATEGORIES, MenuItem } from '@/data/menu-data';
-import { Search, Flame, Sparkles, Check, Info } from 'lucide-react';
+import { MENU_ITEMS, MENU_CATEGORIES } from '@/data/menu-data';
+import FoodImage from '@/components/food-image';
+import { Search } from 'lucide-react';
 
 export default function MenuPreview() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -105,14 +105,13 @@ export default function MenuPreview() {
               >
                 {/* Thumbnail Image */}
                 <div className="relative w-full sm:w-36 aspect-square sm:aspect-auto sm:h-36 rounded-xl overflow-hidden bg-brand-card flex-shrink-0">
-                  <Image
+                  <FoodImage
                     src={item.image}
                     alt={item.name}
-                    fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   {item.badge && (
-                    <span className="absolute top-2 left-2 bg-brand-red text-white text-[9px] font-black uppercase px-2 py-0.5 rounded tracking-wider shadow">
+                    <span className="absolute top-2 left-2 bg-brand-red text-white text-[9px] font-black uppercase px-2 py-0.5 rounded tracking-wider shadow z-10">
                       {item.badge}
                     </span>
                   )}

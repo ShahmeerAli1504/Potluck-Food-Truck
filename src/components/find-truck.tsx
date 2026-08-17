@@ -104,32 +104,29 @@ export default function FindTruck() {
               </div>
             </div>
 
-            {/* Right: Reno Interactive Location Map Preview */}
+            {/* Right: Real Interactive Map Embed */}
             <div className="lg:col-span-5">
-              <div className="bg-brand-black border border-brand-border rounded-2xl p-4 space-y-3 relative overflow-hidden">
+              <div className="bg-brand-black border border-brand-border rounded-2xl p-4 space-y-3 relative overflow-hidden shadow-xl">
                 <div className="flex items-center justify-between border-b border-brand-border pb-3">
                   <span className="text-xs font-extrabold uppercase text-white tracking-wider flex items-center gap-1.5">
-                    <MapPin className="w-4 h-4 text-brand-gold" /> Idlewild Park - Reno
+                    <MapPin className="w-4 h-4 text-brand-gold" /> {todayStop.venueName}
                   </span>
                   <span className="text-[10px] bg-brand-gold/20 text-brand-gold font-bold px-2 py-0.5 rounded">
                     Live GPS Spot
                   </span>
                 </div>
 
-                {/* Simulated Map Graphic */}
-                <div className="relative aspect-[4/3] rounded-xl bg-[#1A1C22] overflow-hidden border border-brand-border flex items-center justify-center text-center p-4">
-                  <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#2EC4B6_1px,transparent_1px)] [background-size:16px_16px]" />
-                  
-                  {/* Pin Graphic */}
-                  <div className="relative z-10 flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-black shadow-xl animate-bounce border-2 border-white">
-                      🚚
-                    </div>
-                    <span className="bg-brand-black text-brand-cream font-bold text-xs px-3 py-1 rounded-full border border-brand-border mt-2 shadow">
-                      Potluck Truck Spot
-                    </span>
-                    <span className="text-[10px] text-brand-cream/60 mt-1">2055 Idlewild Dr, Reno, NV</span>
-                  </div>
+                {/* Real Interactive Map Frame */}
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-brand-border bg-brand-card shadow-inner">
+                  <iframe
+                    title="Potluck Truck Location Map - Reno, NV"
+                    src="https://maps.google.com/maps?q=2055+Idlewild+Dr,+Reno,+NV+89509&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    width="100%"
+                    height="100%"
+                    className="w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-500 opacity-90 hover:opacity-100"
+                    loading="lazy"
+                    allowFullScreen
+                  />
                 </div>
 
                 <a
@@ -138,7 +135,7 @@ export default function FindTruck() {
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center gap-1.5 text-xs font-bold text-brand-gold hover:text-white transition-colors pt-1"
                 >
-                  <span>Open Full Interactive Map</span>
+                  <span>Open Full Interactive Google Maps</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </div>

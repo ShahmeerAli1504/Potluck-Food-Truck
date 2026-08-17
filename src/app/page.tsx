@@ -1,7 +1,6 @@
 'use client';
 
 import CustomLoader from '@/components/custom-loader';
-import AnnouncementBar from '@/components/announcement-bar';
 import Navbar from '@/components/navbar';
 import Hero from '@/components/hero';
 import FeaturedFood from '@/components/featured-food';
@@ -18,7 +17,6 @@ export default function HomePage() {
   return (
     <main className="relative bg-brand-black text-brand-cream min-h-screen">
       <CustomLoader />
-      <AnnouncementBar />
       <Navbar />
       <Hero />
       <FeaturedFood />

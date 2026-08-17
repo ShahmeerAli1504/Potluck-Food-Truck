@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import FoodImage from '@/components/food-image';
 import { MapPin, Utensils, Calendar, Flame, Star, Sparkles, ArrowDown } from 'lucide-react';
 
 export default function Hero() {
@@ -107,14 +108,13 @@ export default function Hero() {
             
             {/* Main Food Composite Frame */}
             <div className="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden border-2 border-brand-border/80 bg-brand-card shadow-2xl group">
-              <Image
+              <FoodImage
                 src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1000&q=80"
                 alt="Cheeseburger Wonton Tacos - Potluck Food Truck Reno"
-                fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 pointer-events-none" />
 
               {/* Logo Overlay Badge */}
               <div className="absolute top-4 left-4 bg-brand-black/90 backdrop-blur-md p-2 rounded-2xl border border-brand-border flex items-center gap-3 shadow-lg">
@@ -149,12 +149,11 @@ export default function Hero() {
             </div>
 
             {/* Floating Secondary Dish Badge */}
-            <div className="absolute -bottom-6 -left-4 sm:left-2 bg-brand-charcoal border border-brand-border p-3.5 rounded-2xl shadow-2xl hidden sm:flex items-center gap-3 max-w-[240px]">
+            <div className="absolute -bottom-6 -left-4 sm:left-2 bg-brand-charcoal border border-brand-border p-3.5 rounded-2xl shadow-2xl hidden sm:flex items-center gap-3 max-w-[240px] z-20">
               <div className="relative w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
-                <Image
+                <FoodImage
                   src="https://images.unsplash.com/photo-1585238342024-78d387f4a707?auto=format&fit=crop&w=300&q=80"
                   alt="Elote Chicken Fries"
-                  fill
                   className="object-cover"
                 />
               </div>

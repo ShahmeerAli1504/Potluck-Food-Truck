@@ -1,7 +1,6 @@
 'use client';
 
 import Navbar from '@/components/navbar';
-import AnnouncementBar from '@/components/announcement-bar';
 import Footer from '@/components/footer';
 import MobileActionBar from '@/components/mobile-action-bar';
 import { Mail, Phone, MapPin, Send, Instagram } from 'lucide-react';
@@ -17,7 +16,6 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-brand-black text-brand-cream">
-      <AnnouncementBar />
       <Navbar />
 
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

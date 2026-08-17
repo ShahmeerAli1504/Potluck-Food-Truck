@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { MENU_ITEMS, MenuItem } from '@/data/menu-data';
+import FoodImage from '@/components/food-image';
 import { Flame, Star, Sparkles, ArrowRight, X, Check } from 'lucide-react';
 
 export default function FeaturedFood() {
@@ -47,23 +47,22 @@ export default function FeaturedFood() {
             >
               {/* Image Container */}
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-brand-card">
-                <Image
+                <FoodImage
                   src={dish.image}
                   alt={dish.name}
-                  fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-transparent to-transparent pointer-events-none" />
 
                 {/* Badge Overlay */}
                 {dish.badge && (
-                  <span className="absolute top-3 left-3 bg-brand-red text-white text-[10px] font-black uppercase px-2.5 py-1 rounded shadow-md tracking-wider">
+                  <span className="absolute top-3 left-3 bg-brand-red text-white text-[10px] font-black uppercase px-2.5 py-1 rounded shadow-md tracking-wider z-10">
                     {dish.badge}
                   </span>
                 )}
 
                 {/* Price Tag */}
-                <span className="absolute bottom-3 right-3 font-display font-black text-base text-brand-gold bg-brand-black/90 backdrop-blur-md px-3 py-1 rounded-lg border border-brand-border">
+                <span className="absolute bottom-3 right-3 font-display font-black text-base text-brand-gold bg-brand-black/90 backdrop-blur-md px-3 py-1 rounded-lg border border-brand-border z-10">
                   ${dish.price.toFixed(2)}
                 </span>
               </div>
@@ -104,22 +103,21 @@ export default function FeaturedFood() {
             {/* Close Button */}
             <button
               onClick={() => setSelectedDish(null)}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-brand-black/80 text-brand-cream hover:text-white border border-brand-border hover:bg-brand-red transition-colors"
+              className="absolute top-4 right-4 z-20 p-2 rounded-full bg-brand-black/80 text-brand-cream hover:text-white border border-brand-border hover:bg-brand-red transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Modal Image */}
             <div className="relative aspect-video w-full">
-              <Image
+              <FoodImage
                 src={selectedDish.image}
                 alt={selectedDish.name}
-                fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent pointer-events-none" />
               {selectedDish.badge && (
-                <span className="absolute bottom-4 left-4 bg-brand-red text-white text-xs font-black uppercase px-3 py-1 rounded tracking-wider">
+                <span className="absolute bottom-4 left-4 bg-brand-red text-white text-xs font-black uppercase px-3 py-1 rounded tracking-wider z-10">
                   {selectedDish.badge}
                 </span>
               )}
