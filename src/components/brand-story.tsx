@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import FoodImage from '@/components/food-image';
 import { Sparkles, HeartHandshake, MapPin, UtensilsCrossed, Award, Users, Flame } from 'lucide-react';
 
 export default function BrandStory() {
@@ -22,10 +22,9 @@ export default function BrandStory() {
             <div className="relative w-full max-w-md bg-brand-dark/90 border-2 border-brand-border rounded-3xl p-8 flex flex-col items-center text-center shadow-2xl group hover:border-brand-gold/50 transition-colors">
               {/* Logo graphic */}
               <div className="relative w-36 h-36 mb-4 rounded-full overflow-hidden border-4 border-brand-gold/60 shadow-2xl group-hover:scale-105 transition-transform duration-500">
-                <Image
+                <FoodImage
                   src="/logo.jpg"
                   alt="Potluck Good Luck Truck Logo"
-                  fill
                   className="object-cover"
                 />
               </div>
@@ -117,11 +116,10 @@ export default function BrandStory() {
                 {/* Polaroid Frame for Owner */}
                 <div className="bg-[#FAFAF8] text-brand-black p-4 pb-6 rounded-2xl shadow-2xl border border-stone-300 transform -rotate-2 group-hover:rotate-0 transition-transform duration-500 max-w-sm w-full">
                   {/* Photo Container */}
-                  <div className="relative aspect-4/5 w-full bg-stone-900 rounded-xl overflow-hidden border border-stone-200 shadow-inner">
-                    <Image
+                  <div className="relative aspect-[4/5] h-80 sm:h-[400px] w-full bg-stone-900 rounded-xl overflow-hidden border border-stone-200 shadow-inner">
+                    <FoodImage
                       src="/Owner.jpg"
                       alt="Griffin Brown - Owner of The Potluck Truck"
-                      fill
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                   </div>

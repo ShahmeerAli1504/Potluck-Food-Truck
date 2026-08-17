@@ -464,7 +464,7 @@ export default function GallerySection({ standalone = false }: { standalone?: bo
                       isTop ? 'hover:scale-[1.03] transition-transform' : 'pointer-events-none'
                     }`}
                   >
-                    <div className="relative aspect-4/3 w-full bg-stone-900 rounded-xl overflow-hidden">
+                    <div className="relative aspect-[4/3] h-64 w-full bg-stone-900 rounded-xl overflow-hidden">
                       <FoodImage src={item.src} alt={item.title} className="object-cover" />
                       {item.sticker && (
                         <div
