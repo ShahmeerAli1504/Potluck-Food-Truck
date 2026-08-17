@@ -17,15 +17,15 @@ export default function Hero() {
           {/* Left Column: Headlines & High Conversion CTAs */}
           <div className="lg:col-span-7 space-y-6 text-left">
             
-            {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 bg-brand-charcoal/90 border border-brand-border px-3.5 py-1.5 rounded-full shadow-inner">
-              <Flame className="w-4 h-4 text-brand-red fill-brand-red animate-pulse" />
+            {/* Tagline Badge with Flame Heat Animation */}
+            <div className="inline-flex items-center gap-2 bg-brand-charcoal/90 border border-brand-border px-3.5 py-1.5 rounded-full shadow-inner animate-float-food">
+              <Flame className="w-4 h-4 text-brand-red fill-brand-red animate-flame-heat" />
               <span className="font-sans font-bold text-xs uppercase tracking-widest text-brand-cream">
                 Reno, Nevada &bull; Mobile Kitchen
               </span>
               <span className="h-3 w-px bg-brand-border" />
               <span className="font-script text-brand-gold text-sm font-semibold">
-                The Good Luck Truck
+                The Good Luck Truck 🌶️
               </span>
             </div>
 
@@ -106,7 +106,7 @@ export default function Hero() {
           {/* Right Column: Hero Visual Showcase */}
           <div className="lg:col-span-5 relative flex justify-center">
             
-            {/* Main Food Composite Frame */}
+            {/* Main Food Composite Frame with Steam Animation */}
             <div className="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden border-2 border-brand-border/80 bg-brand-card shadow-2xl group">
               <FoodImage
                 src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1000&q=80"
@@ -115,6 +115,13 @@ export default function Hero() {
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 pointer-events-none" />
+
+              {/* Animated Steam Wisps Overlay */}
+              <div className="absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-3 pointer-events-none z-10">
+                <span className="w-2 h-6 bg-white/20 blur-xs rounded-full animate-steam-1" />
+                <span className="w-2.5 h-8 bg-brand-gold/30 blur-xs rounded-full animate-steam-2" />
+                <span className="w-2 h-5 bg-white/20 blur-xs rounded-full animate-steam-1" />
+              </div>
 
               {/* Logo Overlay Badge */}
               <div className="absolute top-4 left-4 bg-brand-black/90 backdrop-blur-md p-2 rounded-2xl border border-brand-border flex items-center gap-3 shadow-lg">

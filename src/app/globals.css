@@ -46,24 +46,64 @@ body {
   background-size: 24px 24px;
 }
 
-/* Badge styles */
-.chalk-border {
-  border: 1px solid rgba(245, 242, 235, 0.15);
+/* Steam Wisps Animation */
+@keyframes steamWisp {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-20px) scaleX(1.3);
+    opacity: 0;
+  }
 }
 
-.chalk-border-red {
-  border: 1px solid rgba(229, 57, 53, 0.4);
+/* Float & Sizzle Animation */
+@keyframes floatSizzle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(3deg);
+  }
 }
 
-.chalk-border-gold {
-  border: 1px solid rgba(245, 166, 35, 0.4);
+/* Flame Pulse */
+@keyframes flameHeat {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px rgba(229, 57, 53, 0.6));
+  }
+  50% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 10px rgba(245, 166, 35, 0.9));
+  }
 }
 
-/* Subtle glow */
+.animate-steam-1 {
+  animation: steamWisp 3s ease-out infinite;
+}
+
+.animate-steam-2 {
+  animation: steamWisp 3s ease-out 1.5s infinite;
+}
+
+.animate-float-food {
+  animation: floatSizzle 4s ease-in-out infinite;
+}
+
+.animate-flame-heat {
+  animation: flameHeat 2s ease-in-out infinite;
+}
+
+/* Glow effects */
 .glow-red {
-  box-shadow: 0 0 30px -5px rgba(229, 57, 53, 0.3);
+  box-shadow: 0 0 35px -5px rgba(229, 57, 53, 0.4);
 }
 
 .glow-gold {
-  box-shadow: 0 0 30px -5px rgba(245, 166, 35, 0.25);
+  box-shadow: 0 0 35px -5px rgba(245, 166, 35, 0.35);
 }
