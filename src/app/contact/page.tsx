@@ -3,15 +3,44 @@
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import MobileActionBar from '@/components/mobile-action-bar';
-import { Mail, Phone, MapPin, Send, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Instagram, AlertCircle, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    setLoading(true);
+    setError('');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      setSent(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (err: any) {
+      setError(err?.message || 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -55,14 +84,10 @@ export default function ContactPage() {
                 <div>
                   <p className="text-xs font-bold uppercase text-brand-gold">General & Event Email</p>
                   <a
-                    href="mailto:catering@potlucktruckreno.com?subject=Potluck%20Food%20Truck%20General%20Inquiry"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      window.location.href = "mailto:catering@potlucktruckreno.com?subject=Potluck%20Food%20Truck%20General%20Inquiry";
-                    }}
+                    href="mailto:griffin@potlucknv.com?subject=Potluck%20Food%20Truck%20General%20Inquiry"
                     className="font-bold text-white hover:text-brand-red text-base transition-colors"
                   >
-                    catering@potlucktruckreno.com
+                    griffin@potlucknv.com
                   </a>
                 </div>
               </div>
@@ -101,11 +126,11 @@ export default function ContactPage() {
               <div className="text-center py-12 space-y-3">
                 <h3 className="font-display font-black text-2xl text-white uppercase">Message Sent!</h3>
                 <p className="text-sm text-brand-cream/80">
-                  Thank you for reaching out to Potluck. We will get back to you shortly.
+                  Thank you for reaching out to Potluck. Your message has been forwarded to <strong className="text-white">griffin@potlucknv.com</strong>. We will get back to you shortly!
                 </p>
                 <button
                   onClick={() => setSent(false)}
-                  className="bg-brand-charcoal text-brand-cream font-bold text-xs px-5 py-2.5 rounded-xl border border-brand-border mt-2"
+                  className="bg-brand-charcoal hover:bg-brand-border text-brand-cream font-bold text-xs px-5 py-2.5 rounded-xl border border-brand-border mt-2 transition-colors"
                 >
                   Send Another Message
                 </button>
@@ -115,26 +140,38 @@ export default function ContactPage() {
                 <h2 className="font-display font-extrabold text-2xl text-white uppercase">
                   Send Us A Message
                 </h2>
+
+                {error && (
+                  <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-3.5 flex items-center gap-3 text-red-400 text-xs font-semibold">
+                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                    <span>{error}</span>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-brand-cream uppercase mb-1">
-                      Name
+                      Name *
                     </label>
                     <input
                       type="text"
                       required
                       placeholder="Your Name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full bg-brand-black border border-brand-border focus:border-brand-red text-white text-sm rounded-xl px-4 py-3 outline-none"
                     />
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-brand-cream uppercase mb-1">
-                      Email
+                      Email *
                     </label>
                     <input
                       type="email"
                       required
                       placeholder="you@domain.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full bg-brand-black border border-brand-border focus:border-brand-red text-white text-sm rounded-xl px-4 py-3 outline-none"
                     />
                   </div>
@@ -147,26 +184,40 @@ export default function ContactPage() {
                     type="text"
                     required
                     placeholder="e.g. Schedule Inquiry or Event Question"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     className="w-full bg-brand-black border border-brand-border focus:border-brand-red text-white text-sm rounded-xl px-4 py-3 outline-none"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-brand-cream uppercase mb-1">
-                    Message
+                    Message *
                   </label>
                   <textarea
                     rows={4}
                     required
                     placeholder="How can we help you?"
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full bg-brand-black border border-brand-border focus:border-brand-red text-white text-sm rounded-xl px-4 py-3 outline-none resize-none"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-brand-red hover:bg-brand-red-hover text-white font-black text-sm uppercase py-4 rounded-xl shadow-lg transition-colors flex items-center justify-center gap-2"
+                  disabled={loading}
+                  className="w-full bg-brand-red hover:bg-brand-red-hover disabled:opacity-50 text-white font-black text-sm uppercase py-4 rounded-xl shadow-lg transition-colors flex items-center justify-center gap-2"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Send Message</span>
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Sending Message...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>Send Message</span>
+                    </>
+                  )}
                 </button>
               </form>
             )}

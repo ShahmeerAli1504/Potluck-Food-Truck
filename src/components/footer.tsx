@@ -121,14 +121,10 @@ export default function Footer() {
               <p className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-brand-red flex-shrink-0" />
                 <a
-                  href="mailto:catering@potlucktruckreno.com?subject=Potluck%20Food%20Truck%20Website%20Inquiry"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.location.href = "mailto:catering@potlucktruckreno.com?subject=Potluck%20Food%20Truck%20Website%20Inquiry";
-                  }}
+                  href="mailto:griffin@potlucknv.com?subject=Potluck%20Food%20Truck%20Website%20Inquiry"
                   className="hover:text-white font-bold transition-colors"
                 >
-                  catering@potlucktruckreno.com
+                  griffin@potlucknv.com
                 </a>
               </p>
             </div>

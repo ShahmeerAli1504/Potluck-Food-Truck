@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Calendar, Users, MapPin, CheckCircle2, Send, Sparkles, Phone, Mail, Building2, PartyPopper } from 'lucide-react';
+import { Calendar, Users, MapPin, CheckCircle2, Send, Sparkles, Phone, Mail, Building2, PartyPopper, AlertCircle, Loader2 } from 'lucide-react';
 
 export default function CateringCTA() {
   const [formData, setFormData] = useState({
@@ -18,6 +18,7 @@ export default function CateringCTA() {
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const eventTypes = [
     'Private Party',
@@ -34,12 +35,23 @@ export default function CateringCTA() {
 
   const estimatedBudget = Math.round(formData.guestCount * 18);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
 
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const res = await fetch('/api/catering', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to submit catering request');
+      }
+
       setSubmitted(true);
 
       // Trigger Confetti Celebration!
@@ -51,9 +63,13 @@ export default function CateringCTA() {
           colors: ['#E53935', '#F5A623', '#2EC4B6'],
         });
       } catch (err) {
-        // Fallback if canvas-confetti non-browser
+        // Fallback
       }
-    }, 600);
+    } catch (err: any) {
+      setError(err?.message || 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -112,14 +128,10 @@ export default function CateringCTA() {
                   <Phone className="w-4 h-4 text-brand-red" /> (775) 555-FOOD (3663)
                 </a>
                 <a
-                  href="mailto:catering@potlucktruckreno.com?subject=Potluck%20Food%20Truck%20Catering%20Inquiry"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.location.href = "mailto:catering@potlucktruckreno.com?subject=Potluck%20Food%20Truck%20Catering%20Inquiry";
-                  }}
+                  href="mailto:griffin@potlucknv.com?subject=Potluck%20Food%20Truck%20Catering%20Inquiry"
                   className="hover:text-brand-red flex items-center gap-2 font-semibold text-brand-cream transition-colors"
                 >
-                  <Mail className="w-4 h-4 text-brand-gold flex-shrink-0" /> catering@potlucktruckreno.com
+                  <Mail className="w-4 h-4 text-brand-gold flex-shrink-0" /> griffin@potlucknv.com
                 </a>
               </div>
             </div>
@@ -139,12 +151,12 @@ export default function CateringCTA() {
                     Catering Request Received!
                   </h3>
                   <p className="text-brand-cream/80 text-sm max-w-md mx-auto leading-relaxed">
-                    Thank you, <strong className="text-white">{formData.name}</strong>! We’ve logged your request for <strong className="text-brand-gold">{formData.guestCount} guests</strong> on <strong className="text-white">{formData.eventDate || 'your selected date'}</strong>. Our event team will review truck availability and contact you within 24 hours.
+                    Thank you, <strong className="text-white">{formData.name}</strong>! We’ve logged your request for <strong className="text-brand-gold">{formData.guestCount} guests</strong> on <strong className="text-white">{formData.eventDate || 'your selected date'}</strong>. Your request has been forwarded to <strong className="text-white">griffin@potlucknv.com</strong> and our event team will get back to you within 24 hours.
                   </p>
                   <div className="pt-4">
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="bg-brand-charcoal hover:bg-brand-border text-brand-cream font-bold text-xs uppercase px-6 py-3 rounded-xl border border-brand-border"
+                      className="bg-brand-charcoal hover:bg-brand-border text-brand-cream font-bold text-xs uppercase px-6 py-3 rounded-xl border border-brand-border transition-colors"
                     >
                       Submit Another Inquiry
                     </button>
@@ -160,6 +172,13 @@ export default function CateringCTA() {
                       Fast response guaranteed. Lock in your date with zero upfront obligation.
                     </p>
                   </div>
+
+                  {error && (
+                    <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-3.5 flex items-center gap-3 text-red-400 text-xs font-semibold">
+                      <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                      <span>{error}</span>
+                    </div>
+                  )}
 
                   {/* Form Grid */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -290,7 +309,10 @@ export default function CateringCTA() {
                     className="w-full bg-brand-red hover:bg-brand-red-hover disabled:opacity-50 text-white font-black text-sm uppercase tracking-wider py-4 rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 mt-4"
                   >
                     {loading ? (
-                      <span>Processing Request...</span>
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Processing Request...</span>
+                      </>
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
