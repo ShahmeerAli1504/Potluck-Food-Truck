@@ -62,8 +62,8 @@ export default function FeaturedFood() {
                 )}
 
                 {/* Price Tag */}
-                <span className="absolute bottom-3 right-3 font-display font-black text-base text-brand-gold bg-brand-black/90 backdrop-blur-md px-3 py-1 rounded-lg border border-brand-border z-10">
-                  ${dish.price.toFixed(2)}
+                <span className="absolute bottom-3 right-3 font-display font-black text-xs sm:text-sm text-brand-gold bg-brand-black/90 backdrop-blur-md px-3 py-1 rounded-lg border border-brand-border z-10">
+                  {dish.price || (dish.prices ? `${Object.keys(dish.prices)[0]}: ${Object.values(dish.prices)[0]}` : '')}
                 </span>
               </div>
 
@@ -85,7 +85,7 @@ export default function FeaturedFood() {
 
                 {/* Bottom Trigger */}
                 <div className="pt-3 border-t border-brand-border/60 flex items-center justify-between text-xs font-bold text-brand-cream/90 group-hover:text-brand-gold transition-colors">
-                  <span>View Details & Ingredients</span>
+                  <span>View Details</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
@@ -134,9 +134,18 @@ export default function FeaturedFood() {
                     {selectedDish.name}
                   </h3>
                 </div>
-                <span className="font-display font-black text-2xl text-brand-gold bg-brand-charcoal px-3 py-1 rounded-xl border border-brand-border">
-                  ${selectedDish.price.toFixed(2)}
-                </span>
+                <div className="flex items-center gap-2">
+                  {selectedDish.price && (
+                    <span className="font-display font-black text-xl text-brand-gold bg-brand-charcoal px-3 py-1 rounded-xl border border-brand-border">
+                      {selectedDish.price}
+                    </span>
+                  )}
+                  {selectedDish.prices && Object.entries(selectedDish.prices).map(([size, pr]) => (
+                    <span key={size} className="font-display font-bold text-xs text-brand-gold bg-brand-charcoal px-2.5 py-1 rounded-lg border border-brand-border">
+                      {size}: {pr}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               <p className="text-sm text-brand-cream/80 leading-relaxed">
