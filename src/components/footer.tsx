@@ -148,8 +148,32 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 border-t border-brand-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-cream/60">
+        <div className="pt-6 border-t border-brand-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-cream/70">
           <p>© {new Date().getFullYear()} Potluck Food Truck Reno. All rights reserved.</p>
+          
+          {/* Powered by Nexora Digital */}
+          <div className="flex items-center gap-2">
+            <span className="text-brand-cream/60 font-medium">Powered by</span>
+            <a
+              href="https://nexoradigital.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 group transition-opacity hover:opacity-90"
+            >
+              <div className="relative w-6 h-6 shrink-0">
+                <Image
+                  src="/nexora-logo.png"
+                  alt="Nexora Digital Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <span className="font-semibold text-white tracking-wide group-hover:text-brand-gold transition-colors">
+                Nexora Digital
+              </span>
+            </a>
+          </div>
+
           <button
             onClick={scrollToTop}
             className="flex items-center gap-1 hover:text-white font-bold transition-colors"
