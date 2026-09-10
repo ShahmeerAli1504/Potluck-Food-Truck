@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { MapPin, Phone, Mail, Instagram, ArrowUp } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Facebook, ArrowUp } from 'lucide-react';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -43,6 +43,15 @@ export default function Footer() {
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.facebook.com/thepotlucktruck"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-brand-dark border border-brand-border hover:border-brand-red flex items-center justify-center text-brand-cream hover:text-white transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-4 h-4" />
               </a>
               <a
                 href="https://www.yelp.com/biz/potluck-reno-2"

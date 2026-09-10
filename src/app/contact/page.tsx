@@ -3,7 +3,7 @@
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import MobileActionBar from '@/components/mobile-action-bar';
-import { Mail, Phone, MapPin, Send, Instagram, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Instagram, Facebook, AlertCircle, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 
 export default function ContactPage() {
@@ -108,15 +108,26 @@ export default function ContactPage() {
 
             <div className="pt-4 border-t border-brand-border">
               <p className="text-xs font-bold uppercase text-brand-cream mb-2">Connect on Social:</p>
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-brand-black text-brand-cream hover:text-white px-4 py-2.5 rounded-xl border border-brand-border text-xs font-bold"
-              >
-                <Instagram className="w-4 h-4 text-brand-red" />
-                <span>@potlucktruck</span>
-              </a>
+              <div className="flex flex-wrap items-center gap-2">
+                <a
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-brand-black text-brand-cream hover:text-white px-4 py-2.5 rounded-xl border border-brand-border text-xs font-bold transition-colors"
+                >
+                  <Instagram className="w-4 h-4 text-brand-red" />
+                  <span>Instagram</span>
+                </a>
+                <a
+                  href="https://www.facebook.com/thepotlucktruck"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-brand-black text-brand-cream hover:text-white px-4 py-2.5 rounded-xl border border-brand-border text-xs font-bold transition-colors"
+                >
+                  <Facebook className="w-4 h-4 text-[#1877F2]" />
+                  <span>Facebook</span>
+                </a>
+              </div>
             </div>
           </div>
 

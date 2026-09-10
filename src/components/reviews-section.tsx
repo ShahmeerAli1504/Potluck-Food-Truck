@@ -80,6 +80,15 @@ export default function ReviewsSection() {
           >
             <span>View Schedule on StreetFoodFinder</span> &rarr;
           </a>
+          <span>&bull;</span>
+          <a
+            href="https://www.facebook.com/thepotlucktruck"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white transition-colors flex items-center gap-1 font-bold"
+          >
+            <span>Follow on Facebook</span> &rarr;
+          </a>
         </div>
 
       </div>

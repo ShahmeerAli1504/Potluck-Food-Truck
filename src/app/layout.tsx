@@ -85,6 +85,7 @@ const jsonLd = {
     'https://www.yelp.com/biz/potluck-reno-2',
     'https://streetfoodfinder.com/thepotlucktruck',
     'https://www.instagram.com',
+    'https://www.facebook.com/thepotlucktruck',
   ],
 };
 

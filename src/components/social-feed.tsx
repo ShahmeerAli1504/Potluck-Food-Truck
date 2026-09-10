@@ -1,7 +1,7 @@
 'use client';
 
 import FoodImage from '@/components/food-image';
-import { Instagram, ArrowUpRight, Heart } from 'lucide-react';
+import { Instagram, Facebook, ArrowUpRight, Heart } from 'lucide-react';
 
 export default function SocialFeed() {
   const posts = [
@@ -50,16 +50,28 @@ export default function SocialFeed() {
             </p>
           </div>
 
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-brand-red hover:bg-brand-red-hover text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-6 py-3.5 rounded-xl shadow-lg transition-colors self-start md:self-auto"
-          >
-            <Instagram className="w-4 h-4" />
-            <span>Follow Potluck on Instagram</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </a>
+          <div className="flex flex-wrap items-center gap-3 self-start md:self-auto">
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-brand-red hover:bg-brand-red-hover text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-5 py-3.5 rounded-xl shadow-lg transition-colors"
+            >
+              <Instagram className="w-4 h-4" />
+              <span>Instagram</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+            <a
+              href="https://www.facebook.com/thepotlucktruck"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#1877F2] hover:bg-[#166fe5] text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-5 py-3.5 rounded-xl shadow-lg transition-colors"
+            >
+              <Facebook className="w-4 h-4" />
+              <span>Facebook</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
 
         {/* Feed Grid */}
