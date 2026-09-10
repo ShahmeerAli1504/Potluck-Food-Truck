@@ -60,7 +60,6 @@ export default function FoodImage({ src, alt, fill = true, className = '', prior
       fill={fill}
       className={className}
       priority={priority}
-      unoptimized={true}
       onError={() => setError(true)}
     />
   );
