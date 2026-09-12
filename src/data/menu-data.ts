@@ -168,7 +168,7 @@ export const OFFICIAL_MENU_DATA: CategoryGroup[] = [
         ingredients: ['Fries', 'Garlic Chili', 'Sweet Thai Aioli', 'Green Scallions'],
         price: '$11',
         numericPrice: 11,
-        addon: 'Add Chicken +$3',
+        addon: 'Option to Add Chicken',
         image: '/menu-items/thai-chili-fries.jpg',
       },
       {
@@ -206,7 +206,7 @@ export const OFFICIAL_MENU_DATA: CategoryGroup[] = [
         name: 'Twisted Tacos Combo',
         category: 'favorites',
         categoryLabel: 'Favorites',
-        description: '3 wonton tacos, small fries, soda (Upgrade to Loaded Fries +$2)',
+        description: '3 wonton tacos, small fries, soda (Option to upgrade to Loaded Fries)',
         ingredients: ['3 Wonton Tacos', 'Small Fries', 'Soda Drink'],
         price: '$15',
         numericPrice: 15,

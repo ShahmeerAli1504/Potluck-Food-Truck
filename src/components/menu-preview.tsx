@@ -187,49 +187,24 @@ export default function MenuPreview() {
                     </div>
                   </div>
 
-                  {/* Pricing Options Section */}
-                  <div className="mt-5 pt-3.5 border-t border-zinc-800/80">
-                    {item.prices ? (
-                      /* Dual Pricing Pills Side by Side */
-                      <div className="flex items-center gap-2.5">
-                        {Object.entries(item.prices).map(([size, priceVal], idx) => (
-                          <div
+                  {/* Portion Options Section */}
+                  {item.prices && (
+                    <div className="mt-5 pt-3.5 border-t border-zinc-800/80 flex items-center justify-between">
+                      <span className="text-xs font-extrabold text-zinc-400 uppercase tracking-wider">
+                        Portions
+                      </span>
+                      <div className="flex items-center gap-2">
+                        {Object.keys(item.prices).map((size) => (
+                          <span
                             key={size}
-                            className={`flex-1 rounded-xl px-3 py-2 text-center transition-all ${
-                              idx === 0
-                                ? 'bg-zinc-800/80 border border-zinc-700/80 text-zinc-200 group-hover:border-zinc-600'
-                                : 'bg-[#E11D23] text-white shadow-lg shadow-red-950/50'
-                            }`}
+                            className="bg-zinc-800 text-zinc-200 border border-zinc-700/80 text-xs font-extrabold uppercase px-3 py-1 rounded-xl shadow-sm"
                           >
-                            <span
-                              className={`block text-[10px] font-extrabold uppercase tracking-wider ${
-                                idx === 0 ? 'text-zinc-400' : 'text-red-100'
-                              }`}
-                            >
-                              {size}
-                            </span>
-                            <span
-                              className={`font-display font-black text-base ${
-                                idx === 0 ? 'text-zinc-100' : 'text-white'
-                              }`}
-                            >
-                              {priceVal}
-                            </span>
-                          </div>
+                            {size}
+                          </span>
                         ))}
                       </div>
-                    ) : (
-                      /* Single Price Display */
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-extrabold text-zinc-400 uppercase tracking-wider">
-                          Price
-                        </span>
-                        <span className="bg-[#E11D23] text-white font-display font-black text-lg px-4 py-1.5 rounded-xl shadow-lg shadow-red-950/50">
-                          {item.price}
-                        </span>
-                      </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               );
             })}

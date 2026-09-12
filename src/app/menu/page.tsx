@@ -50,11 +50,6 @@ const menuJsonLd = {
           '@type': 'MenuItem',
           name: 'Cheeseburger Wonton Tacos',
           description: 'Crispy wonton taco shells stuffed with seasoned smash beef, melted cheese, spicy kimchi aioli, and scallions.',
-          offers: {
-            '@type': 'Offer',
-            price: '14.00',
-            priceCurrency: 'USD',
-          },
         },
       ],
     },
@@ -66,11 +61,6 @@ const menuJsonLd = {
           '@type': 'MenuItem',
           name: 'Elote Chicken Fries',
           description: 'Golden double-fried potatoes topped with grilled marinated chicken, street corn elote dip, cotija cheese, and cilantro.',
-          offers: {
-            '@type': 'Offer',
-            price: '15.00',
-            priceCurrency: 'USD',
-          },
         },
       ],
     },

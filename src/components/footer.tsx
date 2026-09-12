@@ -97,7 +97,7 @@ export default function Footer() {
                   href="#menu"
                   className="hover:text-brand-red transition-colors"
                 >
-                  Full Menu & Prices
+                  Full Menu
                 </a>
               </li>
               <li>

@@ -61,10 +61,12 @@ export default function FeaturedFood() {
                   </span>
                 )}
 
-                {/* Price Tag */}
-                <span className="absolute bottom-3 right-3 font-display font-black text-xs sm:text-sm text-brand-gold bg-brand-black/90 backdrop-blur-md px-3 py-1 rounded-lg border border-brand-border z-10">
-                  {dish.price || (dish.prices ? `${Object.keys(dish.prices)[0]}: ${Object.values(dish.prices)[0]}` : '')}
-                </span>
+                {/* Portion / Size Tag */}
+                {dish.prices && (
+                  <span className="absolute bottom-3 right-3 font-display font-bold text-xs text-brand-cream bg-brand-black/90 backdrop-blur-md px-3 py-1 rounded-lg border border-brand-border z-10">
+                    {Object.keys(dish.prices).join(' / ')}
+                  </span>
+                )}
               </div>
 
               {/* Card Content */}
@@ -134,18 +136,15 @@ export default function FeaturedFood() {
                     {selectedDish.name}
                   </h3>
                 </div>
-                <div className="flex items-center gap-2">
-                  {selectedDish.price && (
-                    <span className="font-display font-black text-xl text-brand-gold bg-brand-charcoal px-3 py-1 rounded-xl border border-brand-border">
-                      {selectedDish.price}
-                    </span>
-                  )}
-                  {selectedDish.prices && Object.entries(selectedDish.prices).map(([size, pr]) => (
-                    <span key={size} className="font-display font-bold text-xs text-brand-gold bg-brand-charcoal px-2.5 py-1 rounded-lg border border-brand-border">
-                      {size}: {pr}
-                    </span>
-                  ))}
-                </div>
+                {selectedDish.prices && (
+                  <div className="flex items-center gap-1.5">
+                    {Object.keys(selectedDish.prices).map((size) => (
+                      <span key={size} className="font-display font-bold text-xs text-brand-cream bg-brand-charcoal px-2.5 py-1 rounded-lg border border-brand-border">
+                        {size}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <p className="text-sm text-brand-cream/80 leading-relaxed">
