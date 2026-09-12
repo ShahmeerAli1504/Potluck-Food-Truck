@@ -174,11 +174,11 @@ export default function FeaturedFood() {
               {/* Action Buttons inside Modal */}
               <div className="pt-4 flex items-center gap-3">
                 <a
-                  href="#find-us"
+                  href="#catering"
                   onClick={() => setSelectedDish(null)}
                   className="flex-1 bg-brand-red hover:bg-brand-red-hover text-white text-xs font-bold uppercase tracking-wider py-3 rounded-xl text-center shadow-lg transition-colors"
                 >
-                  Find Truck to Try This &rarr;
+                  Book Catering for Your Event &rarr;
                 </a>
               </div>
             </div>

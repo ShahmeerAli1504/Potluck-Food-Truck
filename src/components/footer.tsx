@@ -102,14 +102,6 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#find-us"
-                  className="hover:text-brand-red transition-colors"
-                >
-                  Find Today's Truck Location
-                </a>
-              </li>
-              <li>
-                <a
                   href="#catering"
                   className="hover:text-brand-red transition-colors"
                 >

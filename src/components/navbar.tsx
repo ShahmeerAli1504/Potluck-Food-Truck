@@ -10,7 +10,6 @@ export default function Navbar() {
 
   const navLinks = [
     { label: 'Menu', href: '/#menu' },
-    { label: 'Find Us', href: '/#find-us' },
     { label: 'Catering & Events', href: '/#catering' },
     { label: 'Gallery', href: '/gallery' },
     { label: 'Our Story', href: '/#story' },
@@ -65,13 +64,6 @@ export default function Navbar() {
         {/* Action CTAs */}
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="#find-us"
-            className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-cream hover:text-white bg-brand-charcoal hover:bg-brand-border px-4 py-2.5 rounded-lg border border-brand-border transition-all"
-          >
-            <MapPin className="w-3.5 h-3.5 text-brand-gold" />
-            Find Truck
-          </a>
-          <a
             href="#catering"
             className="flex items-center gap-2 bg-brand-red hover:bg-brand-red-hover text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-lg shadow-lg hover:shadow-brand-red/20 transition-all transform hover:-translate-y-0.5"
           >
@@ -111,14 +103,6 @@ export default function Navbar() {
             ))}
           </div>
           <div className="pt-3 border-t border-brand-border flex flex-col gap-2.5">
-            <a
-              href="#find-us"
-              onClick={() => setMobileOpen(false)}
-              className="w-full flex items-center justify-center gap-2 bg-brand-charcoal text-brand-cream font-bold text-sm py-3.5 rounded-xl border border-brand-border active:scale-[0.98] transition-all"
-            >
-              <MapPin className="w-4 h-4 text-brand-gold" />
-              Find Truck Schedule
-            </a>
             <a
               href="#catering"
               onClick={() => setMobileOpen(false)}

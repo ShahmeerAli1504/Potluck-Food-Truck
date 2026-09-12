@@ -123,10 +123,10 @@ export default function BrandStory() {
                   Explore Our Menu &rarr;
                 </a>
                 <a
-                  href="#find-us"
+                  href="#catering"
                   className="bg-brand-dark hover:bg-brand-border text-brand-cream hover:text-white border border-brand-border text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-xl transition-all"
                 >
-                  Find Truck Location
+                  Book Event Catering &rarr;
                 </a>
               </div>
             </div>

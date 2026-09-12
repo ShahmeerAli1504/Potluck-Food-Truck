@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
-import { Home, Utensils, Calendar, Truck, Mail, ArrowRight } from 'lucide-react';
+import { Home, Utensils, Calendar, Truck, Mail, ArrowRight, Camera } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: '404 - Page Not Found | Potluck Food Truck Reno',
@@ -80,18 +80,18 @@ export default function NotFound() {
           </Link>
 
           <Link
-            href="/schedule"
+            href="/gallery"
             className="group bg-brand-dark hover:bg-brand-charcoal p-5 rounded-2xl border border-brand-border hover:border-brand-red transition-all duration-300 flex flex-col justify-between space-y-3"
           >
             <div className="w-10 h-10 rounded-xl bg-brand-red/20 text-brand-red flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Calendar className="w-5 h-5" />
+              <Camera className="w-5 h-5" />
             </div>
             <div>
               <h2 className="font-display font-bold text-white uppercase text-sm group-hover:text-brand-red transition-colors flex items-center justify-between">
-                <span>Truck Schedule</span>
+                <span>Photo Gallery</span>
                 <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
               </h2>
-              <p className="text-xs text-brand-cream/60 mt-1">Today's Reno locations</p>
+              <p className="text-xs text-brand-cream/60 mt-1">Food Truck Gallery</p>
             </div>
           </Link>
 

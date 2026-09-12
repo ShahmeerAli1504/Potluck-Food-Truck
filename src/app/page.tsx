@@ -5,7 +5,6 @@ import Hero from '@/components/hero';
 import FeaturedFood from '@/components/featured-food';
 import BrandStory from '@/components/brand-story';
 import MenuPreview from '@/components/menu-preview';
-import FindTruck from '@/components/find-truck';
 import Footer from '@/components/footer';
 import MobileActionBar from '@/components/mobile-action-bar';
 
@@ -57,7 +56,6 @@ export default function HomePage() {
       <FeaturedFood />
       <BrandStory />
       <MenuPreview />
-      <FindTruck />
       <GallerySection />
       <CateringCTA />
       <ReviewsSection />

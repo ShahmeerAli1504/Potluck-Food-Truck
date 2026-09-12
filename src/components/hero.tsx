@@ -61,26 +61,18 @@ export default function Hero() {
             {/* Primary Action Buttons */}
             <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <a
-                href="#find-us"
+                href="#menu"
                 className="flex items-center justify-center gap-3 bg-brand-red hover:bg-brand-red-hover text-white text-base font-bold uppercase tracking-wider px-8 py-4 rounded-xl shadow-xl hover:shadow-brand-red/30 transition-all transform hover:-translate-y-0.5 group"
               >
-                <MapPin className="w-5 h-5 text-brand-gold group-hover:scale-110 transition-transform" />
-                Find Today's Truck
-              </a>
-
-              <a
-                href="#menu"
-                className="flex items-center justify-center gap-2 bg-brand-charcoal hover:bg-brand-border text-brand-cream text-base font-bold uppercase tracking-wider px-7 py-4 rounded-xl border border-brand-border transition-all hover:text-white"
-              >
-                <Utensils className="w-5 h-5 text-brand-cream/70" />
+                <Utensils className="w-5 h-5 text-brand-gold group-hover:scale-110 transition-transform" />
                 View Full Menu
               </a>
 
               <a
                 href="#catering"
-                className="flex items-center justify-center gap-2 text-brand-gold hover:text-white text-sm font-bold uppercase tracking-wider py-3 px-4 transition-colors"
+                className="flex items-center justify-center gap-2 bg-brand-charcoal hover:bg-brand-border text-brand-cream text-base font-bold uppercase tracking-wider px-7 py-4 rounded-xl border border-brand-border transition-all hover:text-white"
               >
-                <Calendar className="w-4 h-4" />
+                <Calendar className="w-5 h-5 text-brand-cream/70" />
                 Book Event Catering &rarr;
               </a>
             </div>
@@ -141,9 +133,6 @@ export default function Hero() {
                       Crispy wonton shells, seasoned beef, melted cheese & house aioli
                     </p>
                   </div>
-                  <span className="font-display font-black text-lg text-brand-gold bg-brand-charcoal px-3 py-1 rounded-xl border border-brand-border flex-shrink-0">
-                    $13.50
-                  </span>
                 </div>
               </div>
             </div>
@@ -160,7 +149,6 @@ export default function Hero() {
               <div>
                 <p className="font-bold text-xs text-white">Elote Chicken Fries</p>
                 <p className="text-[11px] text-brand-cream/70">Sweet corn & cotija</p>
-                <p className="text-xs font-black text-brand-gold mt-0.5">$14.00</p>
               </div>
             </div>
 
