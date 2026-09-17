@@ -7,25 +7,25 @@ export default function SocialFeed() {
   const posts = [
     {
       id: 'p1',
-      image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&auto=format&fit=crop&q=80',
+      image: '/menu-items/cheeseburger-wonton-taco.jpg',
       caption: 'Cheeseburger Wonton Tacos fresh out the fryer at Idlewild Food Truck Friday! #RenoEats #AsianFusion',
       likes: '482',
     },
     {
       id: 'p2',
-      image: 'https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=600&auto=format&fit=crop&q=80',
+      image: '/menu-items/elote-chicken-fries.jpg',
       caption: 'Elote Chicken Fries piled high with cotija cheese and cilantro lime crema. Come get some at Downtown Reno!',
       likes: '395',
     },
     {
       id: 'p3',
-      image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=600&auto=format&fit=crop&q=80',
+      image: '/menu-items/traditional-pork.jpg',
       caption: 'Traditional Pork Potstickers pan-seared golden crisp. Dip into our house sweet chili glaze!',
       likes: '512',
     },
     {
       id: 'p4',
-      image: 'https://images.unsplash.com/photo-1624371414361-e670ef48e227?w=600&auto=format&fit=crop&q=80',
+      image: '/menu-items/churros.jpg',
       caption: 'Fresh cinnamon sugar churros with dark chocolate and dulce de leche dips. Perfect sweet ending to your meal!',
       likes: '621',
     },

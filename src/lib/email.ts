@@ -29,86 +29,359 @@ export async function sendNotificationEmail(payload: EmailPayload) {
 
   const subject = isCatering
     ? `🌮 New Catering Request: ${payload.name} (${payload.guestCount} guests)`
-    : `📩 New Contact Form Message: ${payload.subject || 'General Inquiry'} from ${payload.name}`;
+    : `📩 New Contact Message: ${payload.subject || 'General Inquiry'} from ${payload.name}`;
 
   const plainText = isCatering
-    ? `NEW CATERING REQUEST
----------------------
-Name: ${payload.name}
+    ? `NEW CATERING QUOTE REQUEST
+-----------------------------
+Client Name: ${payload.name}
 Email: ${payload.email}
 Phone: ${payload.phone}
 Event Date: ${payload.eventDate}
 Event Type: ${payload.eventType}
-Guest Count: ${payload.guestCount}
-Location/Venue: ${payload.location || 'N/A'}
-Notes/Details: ${payload.details || 'N/A'}
+Guest Count: ${payload.guestCount} guests
+Location/Venue: ${payload.location || 'Not specified'}
+Special Notes/Details: ${payload.details || 'None provided'}
+
+Reply directly: mailto:${payload.email}
+Call client: tel:${payload.phone}
 
 Forwarded to: ${RECIPIENT_EMAIL}`
-    : `NEW CONTACT FORM SUBMISSION
----------------------------
-Name: ${payload.name}
+    : `NEW CONTACT FORM MESSAGE
+-------------------------
+From: ${payload.name}
 Email: ${payload.email}
 Subject: ${payload.subject}
+
 Message:
 ${payload.message}
 
+Reply directly: mailto:${payload.email}
+
 Forwarded to: ${RECIPIENT_EMAIL}`;
 
+  const formattedDate = new Date().toLocaleDateString('en-US', {
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+
   const htmlContent = isCatering
-    ? `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; color: #111;">
-        <div style="background-color: #E53935; padding: 24px; text-align: center; color: white;">
-          <h1 style="margin: 0; font-size: 24px; text-transform: uppercase; letter-spacing: 1px;">Potluck Food Truck</h1>
-          <p style="margin: 6px 0 0 0; font-size: 14px; opacity: 0.95; font-weight: bold;">New Catering Quote Request</p>
-        </div>
-        <div style="padding: 24px; background-color: #fafafa;">
-          <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-            <tr><td style="padding: 8px 0; font-weight: bold; width: 140px; color: #555;">Client Name:</td><td style="padding: 8px 0; font-size: 16px; font-weight: bold; color: #111;">${escapeHtml(payload.name)}</td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Email:</td><td style="padding: 8px 0;"><a href="mailto:${escapeHtml(payload.email)}" style="color: #E53935; font-weight: bold;">${escapeHtml(payload.email)}</a></td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Phone:</td><td style="padding: 8px 0;"><a href="tel:${escapeHtml(payload.phone)}" style="color: #111; font-weight: bold;">${escapeHtml(payload.phone)}</a></td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Event Date:</td><td style="padding: 8px 0; font-weight: bold; color: #E53935;">${escapeHtml(payload.eventDate)}</td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Event Type:</td><td style="padding: 8px 0;">${escapeHtml(payload.eventType)}</td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Guest Count:</td><td style="padding: 8px 0; font-weight: bold;">${payload.guestCount} guests</td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Location / Venue:</td><td style="padding: 8px 0;">${escapeHtml(payload.location || 'Not specified')}</td></tr>
-          </table>
-          ${
-            payload.details
-              ? `
-            <div style="margin-top: 20px; padding: 16px; background-color: white; border-radius: 8px; border: 1px solid #e0e0e0;">
-              <p style="margin: 0 0 8px 0; font-weight: bold; color: #555;">Additional Details / Requests:</p>
-              <p style="margin: 0; white-space: pre-wrap; color: #333; line-height: 1.5;">${escapeHtml(payload.details)}</p>
-            </div>
-          `
-              : ''
-          }
-        </div>
-        <div style="padding: 16px; text-align: center; background-color: #111; color: #999; font-size: 12px;">
-          This inquiry was submitted from the Potluck website and sent directly to <strong>${RECIPIENT_EMAIL}</strong>.
-        </div>
-      </div>
-    `
-    : `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; color: #111;">
-        <div style="background-color: #111; padding: 24px; text-align: center; color: white;">
-          <h1 style="margin: 0; font-size: 24px; text-transform: uppercase; letter-spacing: 1px;">Potluck Food Truck</h1>
-          <p style="margin: 6px 0 0 0; font-size: 14px; color: #F5A623; font-weight: bold;">New Contact Form Submission</p>
-        </div>
-        <div style="padding: 24px; background-color: #fafafa;">
-          <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-            <tr><td style="padding: 8px 0; font-weight: bold; width: 120px; color: #555;">From:</td><td style="padding: 8px 0; font-weight: bold; color: #111;">${escapeHtml(payload.name)}</td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Email:</td><td style="padding: 8px 0;"><a href="mailto:${escapeHtml(payload.email)}" style="color: #E53935; font-weight: bold;">${escapeHtml(payload.email)}</a></td></tr>
-            <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Subject:</td><td style="padding: 8px 0; font-weight: bold; color: #E53935;">${escapeHtml(payload.subject)}</td></tr>
-          </table>
-          <div style="margin-top: 20px; padding: 16px; background-color: white; border-radius: 8px; border: 1px solid #e0e0e0;">
-            <p style="margin: 0 0 8px 0; font-weight: bold; color: #555;">Message:</p>
-            <p style="margin: 0; white-space: pre-wrap; color: #333; line-height: 1.5;">${escapeHtml(payload.message)}</p>
-          </div>
-        </div>
-        <div style="padding: 16px; text-align: center; background-color: #111; color: #999; font-size: 12px;">
-          This message was submitted from the Potluck contact form and sent directly to <strong>${RECIPIENT_EMAIL}</strong>.
-        </div>
-      </div>
-    `;
+    ? `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Catering Request</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #09090b; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+  
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #09090b; padding: 30px 15px;">
+    <tr>
+      <td align="center">
+        
+        <!-- Main Email Container -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); border: 1px solid #27272a;">
+          
+          <!-- Header Banner -->
+          <tr>
+            <td style="background-color: #111113; padding: 32px 24px; text-align: center; border-bottom: 4px solid #E11D23;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td align="center">
+                    <!-- Brand Title & Tagline -->
+                    <span style="font-family: Arial, sans-serif; font-size: 26px; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 2px; display: block; line-height: 1;">
+                      POTLUCK
+                    </span>
+                    <span style="font-size: 12px; font-weight: 700; color: #F5A623; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-top: 4px;">
+                      The Good Luck Truck &bull; Reno, NV
+                    </span>
+
+                    <!-- Category Badge -->
+                    <div style="margin-top: 18px;">
+                      <span style="background-color: #E11D23; color: #ffffff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; padding: 6px 16px; border-radius: 50px; display: inline-block;">
+                        🌮 New Catering Quote Request
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Quick Action Buttons Bar -->
+          <tr>
+            <td style="background-color: #fafafa; padding: 16px 24px; border-bottom: 1px solid #f4f4f5; text-align: center;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td align="center">
+                    <a href="mailto:${escapeHtml(payload.email)}?subject=RE:%20Potluck%20Catering%20Quote%20Request%20(${escapeHtml(payload.eventDate)})" style="background-color: #E11D23; color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 20px; border-radius: 8px; display: inline-block; margin: 4px 6px;">
+                      ✉️ Reply to ${escapeHtml(payload.name.split(' ')[0])}
+                    </a>
+                    ${
+                      payload.phone
+                        ? `<a href="tel:${escapeHtml(payload.phone)}" style="background-color: #18181b; color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 20px; border-radius: 8px; display: inline-block; margin: 4px 6px;">
+                        📞 Call Client (${escapeHtml(payload.phone)})
+                      </a>`
+                        : ''
+                    }
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Email Content Body -->
+          <tr>
+            <td style="padding: 28px 24px; background-color: #ffffff;">
+              
+              <p style="margin: 0 0 20px 0; font-size: 15px; color: #3f3f46; line-height: 1.5;">
+                You received a new catering inquiry submitted through <strong>potlucktruckreno.com</strong>:
+              </p>
+
+              <!-- Key Specs Highlight Box -->
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f8f9fa; border-radius: 12px; border: 1px solid #e4e4e7; margin-bottom: 24px; overflow: hidden;">
+                
+                <!-- Client Name Row -->
+                <tr>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; width: 130px; font-size: 12px; font-weight: 800; color: #71717a; text-transform: uppercase;">
+                    Client Name
+                  </td>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; font-size: 16px; font-weight: 800; color: #09090b;">
+                    ${escapeHtml(payload.name)}
+                  </td>
+                </tr>
+
+                <!-- Event Date Row -->
+                <tr>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; font-size: 12px; font-weight: 800; color: #71717a; text-transform: uppercase;">
+                    Event Date
+                  </td>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7;">
+                    <span style="background-color: #fee2e2; color: #991b1b; font-size: 14px; font-weight: 800; padding: 4px 10px; border-radius: 6px; display: inline-block;">
+                      📅 ${escapeHtml(payload.eventDate)}
+                    </span>
+                  </td>
+                </tr>
+
+                <!-- Guest Count Row -->
+                <tr>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; font-size: 12px; font-weight: 800; color: #71717a; text-transform: uppercase;">
+                    Guest Count
+                  </td>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7;">
+                    <span style="background-color: #fef3c7; color: #92400e; font-size: 14px; font-weight: 800; padding: 4px 10px; border-radius: 6px; display: inline-block;">
+                      👥 ${payload.guestCount} Guests
+                    </span>
+                  </td>
+                </tr>
+
+                <!-- Event Type Row -->
+                <tr>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; font-size: 12px; font-weight: 800; color: #71717a; text-transform: uppercase;">
+                    Event Type
+                  </td>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; font-size: 14px; font-weight: 700; color: #18181b;">
+                    🎉 ${escapeHtml(payload.eventType)}
+                  </td>
+                </tr>
+
+                <!-- Location / Venue Row -->
+                <tr>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; font-size: 12px; font-weight: 800; color: #71717a; text-transform: uppercase;">
+                    Location / Venue
+                  </td>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; font-size: 14px; color: #27272a;">
+                    📍 ${escapeHtml(payload.location || 'Not specified')}
+                  </td>
+                </tr>
+
+                <!-- Phone Row -->
+                <tr>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; font-size: 12px; font-weight: 800; color: #71717a; text-transform: uppercase;">
+                    Phone
+                  </td>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; font-size: 14px; font-weight: 700; color: #09090b;">
+                    <a href="tel:${escapeHtml(payload.phone)}" style="color: #09090b; text-decoration: underline;">
+                      ${escapeHtml(payload.phone)}
+                    </a>
+                  </td>
+                </tr>
+
+                <!-- Email Row -->
+                <tr>
+                  <td style="padding: 14px 18px; font-size: 12px; font-weight: 800; color: #71717a; text-transform: uppercase;">
+                    Email
+                  </td>
+                  <td style="padding: 14px 18px; font-size: 14px; font-weight: 700;">
+                    <a href="mailto:${escapeHtml(payload.email)}" style="color: #E11D23; text-decoration: none;">
+                      ${escapeHtml(payload.email)}
+                    </a>
+                  </td>
+                </tr>
+
+              </table>
+
+              <!-- Additional Details Block -->
+              ${
+                payload.details
+                  ? `
+                <div style="background-color: #ffffff; border-left: 4px solid #E11D23; border: 1px solid #e4e4e7; border-left-width: 4px; border-radius: 8px; padding: 18px; margin-top: 20px;">
+                  <span style="font-size: 11px; font-weight: 800; color: #71717a; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px;">
+                    📝 Special Requests / Additional Details
+                  </span>
+                  <p style="margin: 0; font-size: 14px; color: #27272a; line-height: 1.6; white-space: pre-wrap;">${escapeHtml(payload.details)}</p>
+                </div>
+              `
+                  : ''
+              }
+
+            </td>
+          </tr>
+
+          <!-- Footer Bar -->
+          <tr>
+            <td style="background-color: #111113; padding: 20px 24px; text-align: center; border-top: 1px solid #27272a;">
+              <p style="margin: 0 0 6px 0; font-size: 12px; color: #a1a1aa;">
+                Submitted on <strong>${formattedDate}</strong> via <a href="https://potlucktruckreno.com" style="color: #F5A623; text-decoration: none;">potlucktruckreno.com</a>
+              </p>
+              <p style="margin: 0; font-size: 11px; color: #71717a;">
+                Forwarded directly to <strong>${RECIPIENT_EMAIL}</strong>. You can hit 'Reply' in your email client to contact the customer directly.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>`
+    : `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Contact Message</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #09090b; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+  
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #09090b; padding: 30px 15px;">
+    <tr>
+      <td align="center">
+        
+        <!-- Main Email Container -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); border: 1px solid #27272a;">
+          
+          <!-- Header Banner -->
+          <tr>
+            <td style="background-color: #111113; padding: 32px 24px; text-align: center; border-bottom: 4px solid #F5A623;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td align="center">
+                    <!-- Brand Title & Tagline -->
+                    <span style="font-family: Arial, sans-serif; font-size: 26px; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 2px; display: block; line-height: 1;">
+                      POTLUCK
+                    </span>
+                    <span style="font-size: 12px; font-weight: 700; color: #F5A623; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-top: 4px;">
+                      The Good Luck Truck &bull; Reno, NV
+                    </span>
+
+                    <!-- Category Badge -->
+                    <div style="margin-top: 18px;">
+                      <span style="background-color: #F5A623; color: #111113; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; padding: 6px 16px; border-radius: 50px; display: inline-block;">
+                        📩 New Contact Form Submission
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Quick Action Buttons Bar -->
+          <tr>
+            <td style="background-color: #fafafa; padding: 16px 24px; border-bottom: 1px solid #f4f4f5; text-align: center;">
+              <a href="mailto:${escapeHtml(payload.email)}?subject=RE:%20${encodeURIComponent(payload.subject)}" style="background-color: #18181b; color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 24px; border-radius: 8px; display: inline-block;">
+                ✉️ Reply to ${escapeHtml(payload.name)}
+              </a>
+            </td>
+          </tr>
+
+          <!-- Email Content Body -->
+          <tr>
+            <td style="padding: 28px 24px; background-color: #ffffff;">
+              
+              <p style="margin: 0 0 20px 0; font-size: 15px; color: #3f3f46; line-height: 1.5;">
+                You received a new contact message submitted through <strong>potlucktruckreno.com</strong>:
+              </p>
+
+              <!-- Sender Info Card -->
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f8f9fa; border-radius: 12px; border: 1px solid #e4e4e7; margin-bottom: 24px; overflow: hidden;">
+                <tr>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; width: 110px; font-size: 12px; font-weight: 800; color: #71717a; text-transform: uppercase;">
+                    From Name
+                  </td>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; font-size: 16px; font-weight: 800; color: #09090b;">
+                    ${escapeHtml(payload.name)}
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; font-size: 12px; font-weight: 800; color: #71717a; text-transform: uppercase;">
+                    Email
+                  </td>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e4e4e7; font-size: 14px; font-weight: 700;">
+                    <a href="mailto:${escapeHtml(payload.email)}" style="color: #E11D23; text-decoration: none;">
+                      ${escapeHtml(payload.email)}
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 14px 18px; font-size: 12px; font-weight: 800; color: #71717a; text-transform: uppercase;">
+                    Subject
+                  </td>
+                  <td style="padding: 14px 18px; font-size: 14px; font-weight: 700; color: #09090b;">
+                    ${escapeHtml(payload.subject)}
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Message Body Box -->
+              <div style="background-color: #ffffff; border-left: 4px solid #F5A623; border: 1px solid #e4e4e7; border-left-width: 4px; border-radius: 8px; padding: 20px; margin-top: 10px;">
+                <span style="font-size: 11px; font-weight: 800; color: #71717a; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">
+                  💬 Message Content
+                </span>
+                <p style="margin: 0; font-size: 15px; color: #18181b; line-height: 1.6; white-space: pre-wrap;">${escapeHtml(payload.message)}</p>
+              </div>
+
+            </td>
+          </tr>
+
+          <!-- Footer Bar -->
+          <tr>
+            <td style="background-color: #111113; padding: 20px 24px; text-align: center; border-top: 1px solid #27272a;">
+              <p style="margin: 0 0 6px 0; font-size: 12px; color: #a1a1aa;">
+                Submitted on <strong>${formattedDate}</strong> via <a href="https://potlucktruckreno.com" style="color: #F5A623; text-decoration: none;">potlucktruckreno.com</a>
+              </p>
+              <p style="margin: 0; font-size: 11px; color: #71717a;">
+                Forwarded directly to <strong>${RECIPIENT_EMAIL}</strong>. You can hit 'Reply' in your email client to answer the customer directly.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>`;
 
   // 1. SMTP using Nodemailer
   const smtpHost = process.env.SMTP_HOST;

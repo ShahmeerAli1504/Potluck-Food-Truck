@@ -9,9 +9,17 @@ interface FoodImageProps {
   fill?: boolean;
   className?: string;
   priority?: boolean;
+  sizes?: string;
 }
 
-export default function FoodImage({ src, alt, fill = true, className = '', priority = false }: FoodImageProps) {
+export default function FoodImage({
+  src,
+  alt,
+  fill = true,
+  className = '',
+  priority = false,
+  sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px',
+}: FoodImageProps) {
   const [error, setError] = useState(false);
 
   // If external network fails, render a high-quality stylized gourmet dish placeholder graphic!
@@ -60,6 +68,7 @@ export default function FoodImage({ src, alt, fill = true, className = '', prior
       fill={fill}
       className={className}
       priority={priority}
+      sizes={fill ? sizes : undefined}
       onError={() => setError(true)}
     />
   );
