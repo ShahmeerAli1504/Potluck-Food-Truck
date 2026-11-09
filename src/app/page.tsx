@@ -9,7 +9,7 @@ import Footer from '@/components/footer';
 import MobileActionBar from '@/components/mobile-action-bar';
 
 // Dynamically import below-the-fold components to reduce main JS bundle size
-const CustomLoader = dynamic(() => import('@/components/custom-loader'), { ssr: false });
+const CustomLoader = dynamic(() => import('@/components/custom-loader'));
 const GallerySection = dynamic(() => import('@/components/gallery-section'));
 const CateringCTA = dynamic(() => import('@/components/catering-cta'));
 const ReviewsSection = dynamic(() => import('@/components/reviews-section'));
@@ -65,3 +65,4 @@ export default function HomePage() {
     </main>
   );
 }
+

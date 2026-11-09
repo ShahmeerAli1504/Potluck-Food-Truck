@@ -1,7 +1,8 @@
 'use client';
 
 import FoodImage from '@/components/food-image';
-import { Instagram, Facebook, ArrowUpRight, Heart } from 'lucide-react';
+import { ArrowUpRight, Heart } from 'lucide-react';
+import { Facebook, Instagram } from '@/components/icons/social';
 
 export default function SocialFeed() {
   const posts = [
@@ -108,3 +109,4 @@ export default function SocialFeed() {
     </section>
   );
 }
+

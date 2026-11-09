@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@500;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.js";
 
 :root {
   --font-display: 'Outfit', -apple-system, sans-serif;
@@ -155,3 +154,4 @@ html, body {
 .glow-gold {
   box-shadow: 0 0 35px -5px rgba(245, 166, 35, 0.35);
 }
+

@@ -2,12 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Facebook, Instagram } from '@/components/icons/social';
 import {
   MapPin,
   Phone,
   Mail,
-  Instagram,
-  Facebook,
   ArrowUp,
 } from "lucide-react";
 
@@ -224,3 +223,4 @@ export default function Footer() {
     </footer>
   );
 }
+

@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   productionBrowserSourceMaps: false,
-  swcMinify: true,
+  
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false,
   },
@@ -20,4 +20,6 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
+
+

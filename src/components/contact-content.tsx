@@ -1,6 +1,7 @@
 'use client';
 
-import { Mail, Phone, MapPin, Send, Instagram, Facebook, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, AlertCircle, Loader2 } from 'lucide-react';
+import { Facebook, Instagram } from '@/components/icons/social';
 import { useState } from 'react';
 
 export default function ContactContent() {
@@ -231,3 +232,4 @@ export default function ContactContent() {
     </section>
   );
 }
+
