@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     'View high-resolution photos of Potluck Food Truck’s signature fusion dishes, truck vibes, and community events across Reno and Sparks, Nevada.',
   alternates: {
-    canonical: 'https://potlucktruckreno.com/gallery',
+    canonical: 'https://www.potlucknv.com/gallery',
   },
   openGraph: {
     title: 'Potluck Food Truck Photo Gallery | Reno, NV',
     description:
       'Check out photos of Cheeseburger Wonton Tacos, Elote Chicken Fries, and food truck events in Reno.',
-    url: 'https://potlucktruckreno.com/gallery',
+    url: 'https://www.potlucknv.com/gallery',
     siteName: 'Potluck Food Truck Reno',
     images: [
       {

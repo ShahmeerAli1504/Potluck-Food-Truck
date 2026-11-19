@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://potlucktruckreno.com'),
+  metadataBase: new URL('https://www.potlucknv.com'),
   title: 'Potluck Food Truck | Asian Fusion with a Mexican Twist in Reno, NV',
   description:
     'Potluck is Reno’s premier food truck serving Cheeseburger Wonton Tacos, Elote Chicken Fries, and pan-fried Potstickers. Find today’s location or book event catering in Reno & Sparks.',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: 'Potluck Food Truck Reno | Asian Fusion with a Mexican Twist',
     description:
       'Zero Boring Bites! Home of the famous Cheeseburger Wonton Tacos and Elote Chicken Fries in Reno, Nevada.',
-    url: 'https://potlucktruckreno.com',
+    url: 'https://www.potlucknv.com',
     siteName: 'Potluck Food Truck Reno',
     images: [
       {
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     images: ['/logo.jpg'],
   },
   alternates: {
-    canonical: 'https://potlucktruckreno.com',
+    canonical: 'https://www.potlucknv.com',
   },
 };
 
@@ -55,9 +55,9 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FoodEstablishment',
   name: 'Potluck Food Truck',
-  image: 'https://potlucktruckreno.com/logo.jpg',
-  '@id': 'https://potlucktruckreno.com',
-  url: 'https://potlucktruckreno.com',
+  image: 'https://www.potlucknv.com/logo.jpg',
+  '@id': 'https://www.potlucknv.com',
+  url: 'https://www.potlucknv.com',
   telephone: '+1-775-555-3663',
   servesCuisine: ['Asian Fusion', 'Mexican Twist', 'Street Food'],
   priceRange: '$$',

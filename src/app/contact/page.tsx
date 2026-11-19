@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     'Get in touch with Potluck Food Truck in Reno, NV. Submit a question, request event information, or reach out directly at (775) 555-FOOD or griffin@potlucknv.com.',
   alternates: {
-    canonical: 'https://potlucktruckreno.com/contact',
+    canonical: 'https://www.potlucknv.com/contact',
   },
   openGraph: {
     title: 'Contact Potluck Food Truck | Reno & Sparks, NV',
     description:
       'Have questions or want to book our food truck? Contact Potluck Reno today via phone, email, or message form.',
-    url: 'https://potlucktruckreno.com/contact',
+    url: 'https://www.potlucknv.com/contact',
     siteName: 'Potluck Food Truck Reno',
     images: [
       {
@@ -40,7 +40,7 @@ const contactJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
   name: 'Contact Potluck Food Truck',
-  url: 'https://potlucktruckreno.com/contact',
+  url: 'https://www.potlucknv.com/contact',
   mainEntity: {
     '@type': 'FoodEstablishment',
     name: 'Potluck Food Truck',

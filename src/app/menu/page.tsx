@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     'Browse the official menu for Potluck Food Truck in Reno. Featuring Cheeseburger Wonton Tacos, Elote Chicken Fries, Pork Potstickers, and specialty Asian-Mexican street food.',
   alternates: {
-    canonical: 'https://potlucktruckreno.com/menu',
+    canonical: 'https://www.potlucknv.com/menu',
   },
   openGraph: {
     title: 'Potluck Food Truck Menu | Asian Fusion in Reno, NV',
     description:
       'Cheeseburger Wonton Tacos, Elote Chicken Fries, and Pork Potstickers. Explore the full food truck menu!',
-    url: 'https://potlucktruckreno.com/menu',
+    url: 'https://www.potlucknv.com/menu',
     siteName: 'Potluck Food Truck Reno',
     images: [
       {

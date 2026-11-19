@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     'Book Potluck Food Truck for weddings, corporate events, private parties, and community gatherings in Reno, Sparks, and Lake Tahoe. Customizable Asian-Mexican fusion catering packages.',
   alternates: {
-    canonical: 'https://potlucktruckreno.com/catering',
+    canonical: 'https://www.potlucknv.com/catering',
   },
   openGraph: {
     title: 'Private Event & Corporate Catering | Potluck Food Truck Reno',
     description:
       'Bring Asian Fusion with a Mexican Twist to your next event in Reno & Sparks. Get a custom catering quote today!',
-    url: 'https://potlucktruckreno.com/catering',
+    url: 'https://www.potlucknv.com/catering',
     siteName: 'Potluck Food Truck Reno',
     images: [
       {

@@ -12,13 +12,13 @@ export const metadata: Metadata = {
   description:
     'Learn the story behind Potluck Food Truck Reno — merging Asian comfort food with Mexican street style to create zero boring bites across Northern Nevada.',
   alternates: {
-    canonical: 'https://potlucktruckreno.com/about',
+    canonical: 'https://www.potlucknv.com/about',
   },
   openGraph: {
     title: 'About Potluck Food Truck | Reno, Nevada',
     description:
       'Discover how Potluck brought Asian Fusion with a Mexican Twist to Reno. Read our story and customer reviews.',
-    url: 'https://potlucktruckreno.com/about',
+    url: 'https://www.potlucknv.com/about',
     siteName: 'Potluck Food Truck Reno',
     images: [
       {

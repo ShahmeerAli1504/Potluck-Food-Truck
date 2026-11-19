@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/'],
       },
     ],
-    sitemap: 'https://potlucktruckreno.com/sitemap.xml',
+    sitemap: 'https://www.potlucknv.com/sitemap.xml',
   };
 }

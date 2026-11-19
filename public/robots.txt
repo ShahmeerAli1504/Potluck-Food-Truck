@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://potlucktruckreno.com/sitemap.xml
+Sitemap: https://www.potlucknv.com/sitemap.xml
